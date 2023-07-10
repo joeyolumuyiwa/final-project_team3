@@ -1,0 +1,253 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   scroll-behavior: smooth;
+}
+
+:root {
+   --main-color: #353535;
+   --main-color-alt: #ADEFD1FF;
+   --main-transition: 0.3s;
+}
+
+html {
+   font-size: 62.5%;
+   scroll-behavior: smooth;
+
+}
+
+body {
+   font-family: 'Noto Serif Telugu', serif;
+   font-family: 'Roboto', sans-serif;
+   font-family: 'Work Sans', sans-serif;
+   font-size: 1.6rem;
+   /* overflow: hidden; */
+   background-color: #FCF6F5;
+
+}
+
+a {
+   font-size: 19px;
+   text-decoration: none;
+   transition: .4s ease all; 
+   color: #2d6a4f;
+   font-weight: 500;
+
+}
+
+ul {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+
+}
+
+p {
+   line-height: 2em !important;
+   font-weight: 500 !important;
+   font-size: 1.5rem;
+
+}
+
+
+h2{
+   color: rgb(43, 143, 98);
+}
+
+.container {
+   padding-left: 15px;
+   padding-right: 15px;
+   margin-left: auto;
+   margin-right: auto;
+
+
+}
+
+.header {
+   background-color: white;
+   box-shadow: 0 0 10px #ddd;
+   position: relative;
+}
+
+.header .container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   position: relative;
+}
+
+.header .logo {
+   color: var(--main-color);
+   font-size: 26px;
+   font-weight: bold;
+   height: 72px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.header .main-nav {
+   display: flex;
+}
+
+.header .main-nav>li>a {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 72px;
+   position: relative;
+   padding: 0 30px;
+   transition: 0.3s;
+   overflow: hidden;
+}
+
+.header .main-nav>li>a::before {
+   content: '';
+   position: absolute;
+   width: 100%;
+   height: 4px;
+   background-color: var(--main-color-alt);
+   top: 0;
+   left: -100%;
+}
+
+.header .main-nav>li>a:hover {
+   color: var(--main-color);
+   background-color: #FCF6F5;
+}
+
+.header .main-nav>li>a:hover::before {
+   left: 0;
+   transition: var(--main-transition);
+}
+
+.landing {
+   position: relative;
+}
+
+.landing::before {
+   content: '';
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: #89ABE3;
+   z-index: -1;
+   transform: skewY(-5deg);
+   transform-origin: top left;
+
+}
+
+
+.landing .container {
+   min-height: calc(100vh - 72px);
+   display: flex;
+   align-items: center;
+   padding-bottom: 5px;
+   /* background-color: #f4a261; */
+}
+
+
+.landing .image img {
+   width: 500px;
+   position: relative;
+   height: 50%;
+
+}
+
+.save{
+   background-color: #2d6a4f;
+   color: white;
+   border: none;
+   padding: 15px 20px;
+}
+
+.card {
+   padding-top: 100px;
+   padding-bottom: 100px;
+   position: relative;
+   background-color: rgba(119, 119, 119, 0.095);
+}
+
+.card .container{
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 400px));
+   gap: 10rem;
+   /* background-color: #2d6a4f; */
+}
+
+.card .box {
+   box-shadow: 0 2px 15px rgb(0 0 0 / 10%);
+   background: white;
+   border-radius: 6px;
+   overflow: hidden;
+   transition: var(--main-transition), box-shadow var(--main-transition);
+}
+
+.card .box:hover {
+   transform: translateY(-10%);
+   box-shadow: 0 2px 15px rgb(0 0 0 / 20%);
+}
+/* 
+.card .box img {
+   max-width: 100%;
+} */
+
+.card .box .content {
+   padding: 10px;
+}
+
+.card .box .content h3 {
+   margin: 0;
+   text-align: center;
+}
+
+.card .box .content p {
+   margin: 10px 0 0 0;
+   line-height: 1.5;
+   color: #777;
+}
+
+.card .box .info {
+   padding: 20px;
+   border-top: 1px solid #edede7;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.card .box .info a {
+   color: var(--main-color);
+   font-weight: bold;
+}
+
+.card .box .info i {
+   color: var(--main-color);
+}
+
+.card .box:hover .info i {
+   animation: moving-arrow 0.6s linear infinite;
+}
+
+
+/* media */
+@media (min-width: 768px) {
+   .container {
+      width: 750px;
+   }
+}
+
+@media (min-width: 992px) {
+   .container {
+      width: 970px;
+   }
+}
+
+@media (min-width: 1200px) {
+   .container {
+      width: 1170px;
+   }
+}

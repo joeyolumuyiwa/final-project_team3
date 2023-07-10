@@ -1,0 +1,44 @@
+.form-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   padding-top: 50px;
+}
+
+.form-wrapper {
+   width: 400px;
+   border: 1px solid black;
+   padding: 50px;
+
+}
+
+.form-wrapper form {
+   display: flex;
+   flex-direction: column;
+}
+
+.form-wrapper label {
+   margin-bottom: 8px;
+}
+
+.form-wrapper input,
+.form-wrapper textarea {
+   margin-bottom: 16px;
+   padding: 8px;
+
+   resize: none;
+
+}
+
+.form-wrapper button {
+   background-color: #2d6a4f;
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   cursor: pointer;
+}
+
+.form-wrapper button:hover {
+   background-color: #2d6a4f;
+}
