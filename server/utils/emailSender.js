@@ -14,7 +14,7 @@ try{
     const message = {
         to: email,
         from:{
-            name: 'Gift Shop',
+            name: 'Gift4U Shop',
             email: 'wmossleh@uos.de'
         },
         subject: subject,

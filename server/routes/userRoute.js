@@ -1,6 +1,6 @@
 import express from "express";
-import { signUpController, loginController, emailConfirmationHandler } from "../controllers/userControllers.js"
-import { singleProfileDetails, updateProfileController, getAllProfilesController } from "../controllers/profileControllers.js"
+import { signUpController, loginController, emailConfirmationHandler, resetPasswordController, changePasswordController, PasswordRecoveryController } from "../controllers/userControllers.js"
+import { singleProfileDetails, updateProfileController } from "../controllers/profileControllers.js"
 import {authorizationHandler} from "../middlewares/authorization.js"
 import {passwordConfirmHandler} from "../middlewares/passwordConfirmHandler.js"
 
@@ -11,8 +11,10 @@ router.post("/signup", passwordConfirmHandler, signUpController)
 router.get('/confirm-email/:token', emailConfirmationHandler)
 router.post("/login", loginController)
 router.get('/profile-details', authorizationHandler, singleProfileDetails)
-router.get("/get-all-profiles", authorizationHandler, getAllProfilesController)
 router.put("/update-profile",  authorizationHandler,  updateProfileController)
+router.post("/reset-password", resetPasswordController)
+router.put("/reset-password", PasswordRecoveryController)
+router.put("/change-password", authorizationHandler, changePasswordController)
 
 
 export default router
