@@ -9,6 +9,9 @@ import NavBar from "./components/NavBar";
 import ConfirmEmail from "./components/ConfirmEmail";
 import Contact from "./components/Contact";
 import Redirect from "./components/Redirect";
+import ResetPassword from "./components/ResetPassword";
+import PasswordRecovery from "./components/PasswordRecovery";
+import ChangePassword from "./components/ChangePassword"
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -76,6 +79,9 @@ function App() {
               />
             }
           />
+           <Route path="/reset-password" element={<ResetPassword/>} />
+           <Route path="/change-password" element={<ChangePassword/>} />
+           <Route path="/reset-password/:email/:token" element={<PasswordRecovery/>} />
         </Routes>
       </div>
     </>

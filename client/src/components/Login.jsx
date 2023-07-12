@@ -65,9 +65,10 @@ const Login = ({ setName, setUserId, setAuthenticated, setEmail }) => {
             )}
             <br />
             <p>
-               Don't have a account? Please register
-               <NavLink to="/register"> here.</NavLink>
+               Don't have an account? Register
+               <NavLink to="/register"> Here!</NavLink>
             </p>
+            <p style={{color:"Tomato"}}>Forgot Password? <NavLink to="/reset-password">Click Here!</NavLink></p>
          </div>
       </div>
    );

@@ -33,6 +33,8 @@
 
 .form-wrapper button {
    background-color: #2d6a4f;
+   font-size:small;
+   font-weight:bold;
    color: white;
    border: none;
    padding: 10px 20px;
@@ -40,5 +42,7 @@
 }
 
 .form-wrapper button:hover {
-   background-color: #2d6a4f;
+   background-color: #2fb87a;
 }
+
+
