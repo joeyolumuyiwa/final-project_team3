@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import ConfirmEmail from "./components/ConfirmEmail";
 import Contact from "./components/Contact";
 import Redirect from "./components/Redirect";
+import Login2 from "./components/googlelogin.jsx"
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);

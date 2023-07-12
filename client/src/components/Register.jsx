@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import "../Form.css";
 import axios from "axios";
+import Login2 from "./googlelogin"; 
 
 const Register = () => {
    const [errorMessage, setErrorMessage] = useState("");
@@ -92,7 +93,11 @@ const Register = () => {
          )}
          </div>
          </div>
-
+         <hr />
+         <br/>
+   <div>            
+   <Login2/>
+   </div>
        
       </div>
 

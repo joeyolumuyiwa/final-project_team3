@@ -15,7 +15,7 @@ function ConfirmEmail({ setName, setAuthenticated }) {
    // Using useEffect hook to make a request to backend to verify the user's token
 
    useEffect(() => {
-      axios.get(`${process.env.REACT_APP_BE_URL}/api/user/confirm-email/${token}`)
+      axios.get(`${process.env.REACT_APP_CLIENTID}/api/user/confirm-email/${token}`)
          .then(res => {
             setSuccessMessage(res.data)
          }
