@@ -7,6 +7,7 @@ export const profileSchema = new mongoose.Schema({
     required: true,
   },
   name: { type: String, required: true },
+  email: { type: String, required: true },
   location: { type: String, required: false },
 });
 

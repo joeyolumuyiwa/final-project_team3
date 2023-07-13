@@ -12,6 +12,8 @@ import Redirect from "./components/Redirect";
 import ResetPassword from "./components/ResetPassword";
 import PasswordRecovery from "./components/PasswordRecovery";
 import ChangePassword from "./components/ChangePassword"
+import Login1 from "./components/googleLogin.jsx"
+
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);

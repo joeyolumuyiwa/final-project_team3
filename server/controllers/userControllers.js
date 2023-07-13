@@ -7,6 +7,19 @@ import { emailSender } from "../utils/emailSender.js";
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
+export const getUsers = async (req, res) => {
+  //code here
+  try {
+    if (req.googleId) {
+      const users = await userModel.find();
+      res.status(200).json({ details: users });
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
 export const signUpController = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;

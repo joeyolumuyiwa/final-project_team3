@@ -6,14 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { GoogleOAuthProvider } from "@react-oauth/google"
+
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+   <GoogleOAuthProvider clientId="706186532883-am794ce2a4ib50dtk74aotnierl43jes.apps.googleusercontent.com">
    <BrowserRouter>
       <App />
    </BrowserRouter>
+   </GoogleOAuthProvider>
 );
 
 
