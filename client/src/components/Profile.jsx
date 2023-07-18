@@ -4,23 +4,27 @@ import { NavLink } from "react-router-dom";
 
 import axios from "axios";
 
-const Profile = ({ name, userId, authenticated, email }) => {
+const Profile = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [profile, setProfile] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
   const [userData, setUserData] = useState({
     name: "",
-    email: "",
     location: "",
+    interests: "",
   });
 
-  //const navigate = useNavigate();
+ let token
+
+  if (JSON.parse(localStorage.getItem("my-profile"))) {
+     token = JSON.parse(localStorage.getItem("my-profile")).res.tokenId // Google token
+   } else {
+     token = JSON.parse(localStorage.getItem("my-app-token"))   // Our token
+   }
 
   const configuration = {
     headers: {
-      Authorization: `Bearer ${JSON.parse(
-        localStorage.getItem("my-app-token")
-      )}`,
+      Authorization: `Bearer ${token}`,
     },
   };
 
@@ -37,8 +41,8 @@ const Profile = ({ name, userId, authenticated, email }) => {
   }, []);
 
   userData["name"] = profile.name;
-  userData["email"] = profile.email;
   userData["location"] = profile.location;
+  userData["interests"] = profile.interests;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,16 +63,8 @@ const Profile = ({ name, userId, authenticated, email }) => {
       .catch((err) => {
         setErrorMessage(err.request.response);
       });
-    clear();
   };
 
-  const clear = () => {
-    setUserData({
-      name: "",
-      email: "",
-      location: "",
-    });
-  };
 
   return (
     <React.Fragment>
@@ -87,23 +83,21 @@ const Profile = ({ name, userId, authenticated, email }) => {
             />
             <hr />
 
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              defaultValue={userData.email}
-              required
-            />
-            <hr />
-
             <label htmlFor="location">Location:</label>
             <input
               type="text"
               id="location"
               name="location"
               defaultValue={userData.location}
-              required
+            />
+            <hr />
+
+            <label htmlFor="interests">Interests</label>
+            <input
+              type="text"
+              id="interests"
+              name="interests"
+              defaultValue={userData.interests}
             />
             <hr />
 
@@ -113,10 +107,11 @@ const Profile = ({ name, userId, authenticated, email }) => {
               </button>
             }
           </form>
-          <div style={{ marginTop: "20px" }}>
-            <NavLink to="/change-password">Change Password {"->"}</NavLink>
-          </div>
-
+          {JSON.parse(localStorage.getItem("my-app-token")) && 
+           <div style={{ marginTop: "20px" }}>
+           <NavLink to="/change-password">Change Password {"->"}</NavLink>
+         </div>
+          }
           <div>
             <br />
             {errorMessage && <p style={{ color: "darkred" }}>{errorMessage}</p>}

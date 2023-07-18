@@ -7,6 +7,23 @@ import { emailSender } from "../utils/emailSender.js";
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
+/* export const getUsers = async (req, res) => {
+   try {
+    if (req.localData) {
+      console.log("localData", req.localData);
+      const users = await userModel.find();
+      res.status(200).json({ users });
+    } else if (req.googleData) {
+      console.log("googleData", req.googleData);
+      const users = await userModel.find();
+      res.status(200).json({ users });
+    }
+  } catch (error) {
+    console.log(error.message);
+  } 
+}; */
+
+
 export const signUpController = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
@@ -77,7 +94,7 @@ export const signUpController = async (req, res, next) => {
   }
 };
 
-// To confirm the user's email
+// To confirm the user's email to register 
 export const emailConfirmationHandler = async (req, res) => {
   try {
     const { token } = req.params;
@@ -218,7 +235,7 @@ export const PasswordRecoveryController = async (req, res, next) => {
     
 
 
-    const decodedData = jwt.verify(token, PRIVATE_KEY, (err, result) => { if (err) { const err = new Error(
+    jwt.verify(token, PRIVATE_KEY, (err, result) => { if (err) { const err = new Error(
       "You already used that link once, and you can't use it again."
     );
     err.status = 400;
@@ -255,7 +272,7 @@ export const changePasswordController = async (req, res, next) => {
       throw error;
     }
 
-    const userObject = await userModel.findById(req.userId);
+    const userObject = await userModel.findById(req.localData.userId);
    
     if (userObject === null) {
       const err = new Error("Invalid Credentials, You are not authorized to change the password.");
@@ -280,7 +297,7 @@ export const changePasswordController = async (req, res, next) => {
     const salt = await bcrypt.genSalt(saltRounds);
     const newHashedPassword = await bcrypt.hash(newPassword, salt);
 
-    const currentUser = await userModel.findByIdAndUpdate(req.userId, {
+    const currentUser = await userModel.findByIdAndUpdate(req.localData.userId, {
       hashedPassword: newHashedPassword
     });
 

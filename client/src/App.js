@@ -11,9 +11,14 @@ import Contact from "./components/Contact";
 import Redirect from "./components/Redirect";
 import ResetPassword from "./components/ResetPassword";
 import PasswordRecovery from "./components/PasswordRecovery";
-import ChangePassword from "./components/ChangePassword"
+import ChangePassword from "./components/ChangePassword";
+import UserContext from "./components/UserContext";
+import { useLocation } from 'react-router-dom'
+import Landing from "./components/Landing";
 
 function App() {
+const location = useLocation()
+
   const [authenticated, setAuthenticated] = useState(false);
   const [name, setName] = useState("");
   const [userId, setUserId] = useState("");
@@ -21,70 +26,43 @@ function App() {
 
   const logoutHandler = () => {
     setAuthenticated(false);
-    localStorage.removeItem("my-app-token");
+    if (JSON.parse(localStorage.getItem("my-profile"))) {
+      localStorage.removeItem("my-profile");
+    } else {
+      localStorage.removeItem("my-app-token");
+    }
   };
 
   return (
-    <>
-      <NavBar
-        authenticated={authenticated}
-        name={name}
-        setAuthenticated={setAuthenticated}
-        logoutHandler={logoutHandler}
-      />
+    <UserContext.Provider
+      value={[
+        { authenticated: authenticated, setAuthenticated: setAuthenticated },
+        { name: name, setName: setName },
+        { userId: userId, setUserId: setUserId },
+        { email: email, setEmail: setEmail },
+        {logoutHandler: logoutHandler}
+      ]}
+    >
+      {location.pathname !== "/" && <  NavBar />}
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/login"
-            element={
-              <Login
-                setName={setName}
-                setUserId={setUserId}
-                setAuthenticated={setAuthenticated}
-                authenticated={authenticated}
-                setEmail={setEmail}
-              />
-            }
-          />
+          <Route path="/" element={<Landing/>}/>
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/confirm-email/:token" element={<ConfirmEmail />} />
+          <Route path="/redirect" element={<Redirect />} />
+          <Route path="/my-profile" element={<Profile />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/change-password" element={<ChangePassword />} />
           <Route
-            path="/confirm-email/:token"
-            element={
-              <ConfirmEmail
-                setName={setName}
-                setAuthenticated={setAuthenticated}
-              />
-            }
+            path="/reset-password/:email/:token"
+            element={<PasswordRecovery />}
           />
-          <Route path="/redirect" element={<Redirect name={name} />} />
-          <Route
-            path="/my-profile"
-            element={
-              <Profile
-                name={name}
-                userId={userId}
-                authenticated={authenticated}
-                email={email}
-              />
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <Contact
-                name={name}
-                userId={userId}
-                authenticated={authenticated}
-              />
-            }
-          />
-           <Route path="/reset-password" element={<ResetPassword/>} />
-           <Route path="/change-password" element={<ChangePassword/>} />
-           <Route path="/reset-password/:email/:token" element={<PasswordRecovery/>} />
         </Routes>
       </div>
-    </>
+    </UserContext.Provider>
   );
 }
 

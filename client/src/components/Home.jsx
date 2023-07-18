@@ -20,9 +20,9 @@ const Home = () => {
       <div className="landing">
          <div className="container">
             <div className="text">
-               <h1>Welcome, to our Gift Shop </h1>
+               <h1>Welcome, to our Gift4U Shop </h1>
                <p>
-               Join our Gift Shop.
+               Join our Gift4U Shop.
                </p>
                <h2>We have right now {usersNum} Customers.</h2>
             </div>

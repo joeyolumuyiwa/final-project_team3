@@ -1,13 +1,19 @@
 import profileModel from "../models/profileModel.js";
-
+import googleProfileModel from "../models/googleProfileModel.js";
 
 
 export const singleProfileDetails = async (req, res, next) => {
    try{
-       const owner = req.userId
-       const result = await profileModel.findOne({owner: owner})
 
-       res.status(200).json(result)
+    if (req.localData) {
+       
+        const result = await profileModel.findOne({owner: req.localData.userId})
+        res.status(200).json(result) 
+
+    } else if (req.googleData) {
+        res.status(200).json(req.googleData)
+    }
+
    }
    catch(err){
        next(err)
@@ -18,14 +24,12 @@ export const singleProfileDetails = async (req, res, next) => {
 
 export const updateProfileController = async (req, res, next) => {
    try{    
-
-      
-     const {name, email, location} = req.body 
+     const {name, location, interests} = req.body 
 
       const bodyOfRequest = {
          name,
-         email,
-         location
+         location,
+         interests
       }
      
       const updateData = {}
@@ -34,8 +38,21 @@ export const updateProfileController = async (req, res, next) => {
           if(value) {updateData[key] = value}
       }
     
-      const result = await profileModel.findOneAndUpdate({owner: req.userId}, updateData)
-      res.status(201).send("Your profile has been updated successfully")
+       if (req.localData) {
+        const result = await profileModel.findOneAndUpdate({owner: req.localData.userId}, updateData)
+        res.status(201).send("Your profile has been updated successfully")
+
+    } else if (req.googleData && !await googleProfileModel.findOne({owner: req.googleData.userId})) {
+        const googleProfile = new googleProfileModel({
+            owner: req.googleData.userId,
+            ...updateData
+          });
+          const newProfile = await googleProfile.save();
+          res.status(201).send("Your profile has been updated successfully")
+    } else {
+        const result = await googleProfileModel.findOneAndUpdate({owner: req.googleData.userId}, updateData)
+        res.status(201).send("Your profile has been updated successfully")
+    } 
   }
   catch(err) {
       next(err)

@@ -15,6 +15,7 @@ router.put("/update-profile",  authorizationHandler,  updateProfileController)
 router.post("/reset-password", resetPasswordController)
 router.put("/reset-password", PasswordRecoveryController)
 router.put("/change-password", authorizationHandler, changePasswordController)
+/* router.get("/get-users", authorizationHandler, getUsers); */
 
 
 export default router
