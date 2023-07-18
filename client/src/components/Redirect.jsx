@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import UserContext from "./UserContext";
 
 export default function Redirect() {
+   const [, {name}] = useContext(UserContext)
+
    const navigate = useNavigate()
 
    useEffect(() => {
@@ -13,7 +16,7 @@ export default function Redirect() {
 
       <div className='landing'>
          <div className='container'>
-            <h1>Thank you! We have sent you an email to complete your registration. You will be redirected to the login page...</h1>
+            <h1>Thank you {name}! We have sent you an email to complete your registration. You will be redirected to the login page...</h1>
          </div></div>
    )
 }

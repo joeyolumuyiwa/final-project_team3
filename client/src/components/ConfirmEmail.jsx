@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { NavLink } from "react-router-dom";
 
-function ConfirmEmail({ setName, setAuthenticated }) {
+function ConfirmEmail() {
 
    const { token } = useParams()
 

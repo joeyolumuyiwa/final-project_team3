@@ -1,11 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
-const NavBar = ({ authenticated, userName, setAuthenticated, logoutHandler }) => {
+import UserContext from "./UserContext";
+
+const NavBar = () => {
+   const [{authenticated}, {name},,, {logoutHandler}] = useContext(UserContext)
+   
    return <>
       <header className="header" id="header">
          <div className="container">
-            <NavLink to='/' className="logo">
-               Gift Shop
+           { authenticated && <div>
+               <h2>Welcome {name}</h2>
+            </div>}
+            <NavLink to='/home' className="logo">
+               Gift4U
             </NavLink>
             <ul className="main-nav">
                <li>
