@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 import UserContext from "./UserContext";
 
 const NavBar = () => {
-   const [{authenticated}, {name},,, {logoutHandler}] = useContext(UserContext)
+   const [{authenticated}, {name},,, {avatar}, {logoutHandler}] = useContext(UserContext)
    
    return <>
       <header className="header" id="header">
          <div className="container">
-           { authenticated && <div>
+           { authenticated && <div style={{display:"flex",alignItems:"center"}}>
+            {avatar && <img src={avatar} alt="User Avatar" style={{width:"60px", height:"60px", borderRadius:"50%", marginRight:"10px"}} />}
                <h2>Welcome {name}</h2>
             </div>}
             <NavLink to='/home' className="logo">
