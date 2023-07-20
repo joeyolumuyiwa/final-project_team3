@@ -9,6 +9,7 @@ export const profileSchema = new mongoose.Schema({
   name: { type: String, required: true },
   location: { type: String, required: false },
   interests: { type: String, required: false },
+  avatar: {type: String, required: false},
 });
 
 const profileModel = mongoose.model("Profile", profileSchema);

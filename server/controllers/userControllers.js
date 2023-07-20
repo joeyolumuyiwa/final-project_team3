@@ -1,5 +1,6 @@
 import userModel from "../models/userModel.js";
 import profileModel from "../models/profileModel.js";
+import googleProfileModel from "../models/googleProfileModel.js"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -22,7 +23,6 @@ const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
     console.log(error.message);
   } 
 }; */
-
 
 export const signUpController = async (req, res, next) => {
   try {
@@ -94,7 +94,7 @@ export const signUpController = async (req, res, next) => {
   }
 };
 
-// To confirm the user's email to register 
+// To confirm the user's email to register
 export const emailConfirmationHandler = async (req, res) => {
   try {
     const { token } = req.params;
@@ -152,6 +152,38 @@ export const loginController = async (req, res, next) => {
       const err = new Error("Invalid Credentials");
       err.status = 400;
       throw err;
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const authorizeUser = async (req, res, next) => {
+  try {
+    if (req.localData) {
+      const result = await profileModel.findOne({
+        owner: req.localData.userId,
+      }, { owner: 1, name: 1, avatar: 1 });
+     
+      res.status(200).json(result);
+    } 
+    else if (req.googleData) {
+      const result = await googleProfileModel.findOne({
+        owner: req.googleData.userId,
+      }, { owner: 1, name: 1, avatar: 1 });
+      
+      if (result) {
+        res.status(200).json(result);
+      } 
+      else {
+        const googleProfile = new googleProfileModel({
+          owner: req.googleData.userId,
+          name: req.googleData.name,
+          avatar: req.googleData.picture
+        });
+        const newProfile = await googleProfile.save();
+        res.status(200).json(newProfile);
+      }
     }
   } catch (err) {
     next(err);
@@ -222,7 +254,6 @@ export const PasswordRecoveryController = async (req, res, next) => {
     const token = req.headers.authorization?.split(" ")[1];
 
     const { password, confirmPassword, email } = req.body;
-   
 
     if (password !== confirmPassword) {
       const error = new Error("Password and Confirm Password must be same");
@@ -230,41 +261,45 @@ export const PasswordRecoveryController = async (req, res, next) => {
       throw error;
     }
 
-    const userObject = await userModel.findOne({ email }, { hashedPassword: 1 });
-    const PRIVATE_KEY = userObject.hashedPassword;
-    
-
-
-    jwt.verify(token, PRIVATE_KEY, (err, result) => { if (err) { const err = new Error(
-      "You already used that link once, and you can't use it again."
+    const userObject = await userModel.findOne(
+      { email },
+      { hashedPassword: 1 }
     );
-    err.status = 400;
-    throw err }
-  return result});
-   
+    const PRIVATE_KEY = userObject.hashedPassword;
+
+    jwt.verify(token, PRIVATE_KEY, (err, result) => {
+      if (err) {
+        const err = new Error(
+          "You already used that link once, and you can't use it again."
+        );
+        err.status = 400;
+        throw err;
+      }
+      return result;
+    });
+
     //  Hashing the new password which is coming from FE
 
     const saltRounds = 11;
     const salt = await bcrypt.genSalt(saltRounds);
     const newHashedPassword = await bcrypt.hash(password, salt);
 
-    const currentUser = await userModel.findOneAndUpdate({email}, {
-      hashedPassword: newHashedPassword,
-    });
+    const currentUser = await userModel.findOneAndUpdate(
+      { email },
+      {
+        hashedPassword: newHashedPassword,
+      }
+    );
 
-    
     res.status(201).send("Password changed successfully.");
   } catch (err) {
-    next(err)
+    next(err);
   }
 };
 
-
 export const changePasswordController = async (req, res, next) => {
   try {
-  
     const { currentPassword, newPassword, confirmPassword } = req.body;
-   
 
     if (newPassword !== confirmPassword) {
       const error = new Error("New Password and Confirm Password must be same");
@@ -273,13 +308,15 @@ export const changePasswordController = async (req, res, next) => {
     }
 
     const userObject = await userModel.findById(req.localData.userId);
-   
+
     if (userObject === null) {
-      const err = new Error("Invalid Credentials, You are not authorized to change the password.");
+      const err = new Error(
+        "Invalid Credentials, You are not authorized to change the password."
+      );
       err.statusCode = 400;
       throw err;
     }
-    
+
     const isValid = await bcrypt.compare(
       currentPassword,
       userObject.hashedPassword
@@ -297,13 +334,15 @@ export const changePasswordController = async (req, res, next) => {
     const salt = await bcrypt.genSalt(saltRounds);
     const newHashedPassword = await bcrypt.hash(newPassword, salt);
 
-    const currentUser = await userModel.findByIdAndUpdate(req.localData.userId, {
-      hashedPassword: newHashedPassword
-    });
+    const currentUser = await userModel.findByIdAndUpdate(
+      req.localData.userId,
+      {
+        hashedPassword: newHashedPassword,
+      }
+    );
 
-    
     res.status(201).send("Password changed successfully.");
   } catch (err) {
-    next(err)
+    next(err);
   }
 };
