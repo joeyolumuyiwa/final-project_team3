@@ -40,7 +40,7 @@ const location = useLocation()
     },
   };
 
-/*     useEffect(() => {
+     useEffect(() => {
     if (token !== null) {
       axios
         .get(`${process.env.REACT_APP_BE_URL}/api/user/authorize-user`, configuration)
@@ -48,7 +48,7 @@ const location = useLocation()
           setName(res.data.name);
           setAuthenticated(true);
           setUserId(res.data.userId);
-          setAvatar(res.data.avatar)
+          res.data.avatar? setAvatar(res.data.avatar) : setAvatar("https://cdn-icons-png.flaticon.com/512/6388/6388000.png") 
         })
         .catch((err) => {
           if(err.response.status === 401)
@@ -57,31 +57,15 @@ const location = useLocation()
           console.log(err.message)
         });
     }
-  }, []);   */
-
-    if (token !== null) {
-    axios
-      .get(`${process.env.REACT_APP_BE_URL}/api/user/authorize-user`, configuration)
-      .then((res) => {
-        setName(res.data.name);
-        setAuthenticated(true);
-        setUserId(res.data.userId);
-        setAvatar(res.data.avatar)
-      })
-      .catch((err) => {
-        if(err.response.status === 401)
-        localStorage.removeItem("my-app-token");
-        localStorage.removeItem("my-profile");
-        console.log(err.message)
-      });
-  } 
- 
-
+  }, []);   
+  
 
 const logoutHandler = () => {
   setAuthenticated(false);
     localStorage.removeItem("my-profile");
     localStorage.removeItem("my-app-token"); 
+    setName("");
+    setAvatar("")
 };
 
   return (

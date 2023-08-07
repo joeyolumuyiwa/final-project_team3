@@ -8,12 +8,6 @@ const Profile = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [profile, setProfile] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
-  /*  const [userData, setUserData] = useState({
-    name: "",
-    location: "",
-    interests: "",
-  }); */
-  const [avatar, setAvatar] = useState("");
 
   let token;
 
@@ -47,18 +41,15 @@ const Profile = () => {
 
     const userData = new FormData();
 
-    /*  for (let i = 0; i < e.target.elements.length - 1; i++) {
-      userData[e.target.elements[i].name] = e.target.elements[i].value;
-    } */
-
     for (let i = 0; i < e.target.elements.length - 1; i++) {
       if (e.target.elements[i].name === "avatar")
-        userData.append("avatar", avatar);
+        userData.append("avatar", e.target.elements[i].files[0]);
       else
         userData.append(e.target.elements[i].name, e.target.elements[i].value);
     }
 
-    /* console.log(Array.from(userData)); */
+     //console.log(Array.from(userData)); 
+    
 
     axios
       .put(
@@ -113,7 +104,6 @@ const Profile = () => {
               type="file"
               name="avatar"
               accept="image/png, image/jpg, image/jpeg, image/gif"
-              onChange={(e) => setAvatar(e.target.files[0])}
             />
             <hr />
             {

@@ -141,12 +141,15 @@ export const loginController = async (req, res, next) => {
 
       const token = jwt.sign(payload, JWT_SECRET_KEY);
 
+      const profileDataFromDB = await profileModel.findOne({ owner: userDataFromDB._id }, {avatar: 1});  
+
       res.status(201).json({
         message: `Hi ${payload.name}, you are logged in successfully.`,
         token: token,
         name: userDataFromDB.name,
         userId: userDataFromDB._id,
         email: userDataFromDB.email,
+        avatar: profileDataFromDB.avatar
       });
     } else {
       const err = new Error("Invalid Credentials");

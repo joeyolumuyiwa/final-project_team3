@@ -21,7 +21,7 @@ export const singleProfileDetails = async (req, res, next) => {
       const result = await googleProfileModel.findOne({
         owner: req.googleData.userId,
       });
-        res.status(200).json(result);
+      res.status(200).json(result);
     }
   } catch (err) {
     next(err);
@@ -45,28 +45,31 @@ export const updateProfileController = async (req, res, next) => {
         updateData[key] = value;
       }
     }
+   
 
     cloudinary.config({
-        cloud_name: cloudName,
-        api_key: cloudApiKey,
-        api_secret: cloudApiSecret,
-      });
+      cloud_name: cloudName,
+      api_key: cloudApiKey,
+      api_secret: cloudApiSecret,
+    });
 
-     const cloudResult = await cloudinary.v2.uploader.upload(
+    if (req.file) {
+      const cloudResult = await cloudinary.v2.uploader.upload(
         req.file.path,
         { public_id: Date.now() + req.file.filename },
-         (err, result) => {
+        (err, result) => {
           if (err) {
             const error = new Error("Failed to upload the Image");
             error.statusCode = 400;
-            throw error
-          } else return result})
+            throw error;
+          } else return result;
+        }
+      );
+      updateData.avatar = cloudResult.url;
+      fs.unlinkSync(req.file.path);
+    }
 
-          updateData.avatar = cloudResult.url
-
-          fs.unlinkSync(req.file.path);
-     
-
+  
     if (req.localData) {
       const result = await profileModel.findOneAndUpdate(
         { owner: req.localData.userId },
