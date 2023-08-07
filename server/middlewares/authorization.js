@@ -24,7 +24,7 @@ export const authorizationHandler = (req, res, next) => {
           throw err;
         } else return result;
       });
-
+     
       req.localData = {
         email: localData.email,
         userId: localData.userId,
@@ -32,6 +32,8 @@ export const authorizationHandler = (req, res, next) => {
     } else {
       //if it is GOOGLE token
       const googleData = jwt.decode(token);
+     
+
 
       req.googleData = {
         name: googleData.name,

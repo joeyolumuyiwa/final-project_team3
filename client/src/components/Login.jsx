@@ -5,8 +5,9 @@ import "../Form.css";
 import Login1 from "./GoogleLogin";
 import UserContext from "./UserContext";
 
+
 const Login = () => {
-  const [{ setAuthenticated }, { setName }, { setUserId }, { setEmail }] =
+  const [{ setAuthenticated }, { setName }, { setUserId }, { setEmail }, {setAvatar}] =
     useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Login = () => {
         setName(res.data.name);
         setUserId(res.data.userId);
         setEmail(res.data.email);
+        res.data.avatar? setAvatar(res.data.avatar) : setAvatar("https://cdn-icons-png.flaticon.com/512/6388/6388000.png") 
         navigate("/home");
       })
       .catch((err) => {
