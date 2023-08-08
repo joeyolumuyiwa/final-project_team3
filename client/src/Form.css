@@ -1,16 +1,15 @@
 .form-container {
    display: flex;
-   flex-direction: column;
    justify-content: center;
    align-items: center;
-   height: 100vh;
-   padding-top: 50px;
-
+   padding-top: 30px;
+   background: linear-gradient(0deg,#8cc0deb9 65%, #ff9b9bbe 75%, #fedea8 80%, #ff9b9bbe 95%);
+   width: 95%;
+ 
 }
 
 .form-wrapper {
-   width: 400px;
-   border: 1px solid black;
+   width: 350px;
    padding: 50px;
 
 }
@@ -33,18 +32,22 @@
 
 }
 
-.form-wrapper button {
-   background-color: #2d6a4f;
-   font-size:small;
-   font-weight:bold;
+
+
+
+
+
+.profile-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding-top: 15px;
+   background: linear-gradient(75deg,#8cc0deb9 78%,  #fedea8 85%, #ff9b9bbe 95%);
    color: white;
-   border: none;
-   padding: 10px 20px;
-   cursor: pointer;
+   border-radius: 20px;
+   width: 95%;
+   margin-top: 15px;
+ 
+
+ 
 }
-
-.form-wrapper button:hover {
-   background-color: #2fb87a;
-}
-
-

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Form.css";
 import axios from "axios";
+import videoGif from "../Reset.mp4"
 
 function PasswordReset() {
   const navigate = useNavigate();
@@ -23,29 +24,30 @@ function PasswordReset() {
     }
   };
   return (
-    <div className="form-container">
+    <div className="reset-container">
       <div className="form-wrapper">
         <h2>Reset Password Email sent!</h2>
-
+ <video className="reset-img" src={videoGif} autoPlay loop muted> </video>
         {!successMessage && (
           <div>
+           
             <p>
               Please enter the email address you used to create your Gift4U
               account. We will then send you an email to reset your password.
             </p>
             <form className="login-form" onSubmit={submitHandler}>
               <label htmlFor="email">Email address</label>
-              <input
+              <input className="reset-input"
                 type="email"
                 id="email"
                 name="email"
                 placeholder="your.email@gmail.com"
                 required
               />
-              <button type="submit">Reset Password</button>
+              <button type="submit" className="profile-btn">Reset Password</button>
               <button
-                style={{ marginTop: "10px" }}
-                className="cancel-btn"
+                
+                className="profile-btn"
                 onClick={() => navigate("/login")}
               >
                 Cancel

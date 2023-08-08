@@ -4,7 +4,7 @@ import axios from "axios";
 import "../Form.css";
 import Login1 from "./GoogleLogin";
 import UserContext from "./UserContext";
-
+import {motion} from "framer-motion";
 
 const Login = () => {
   const [{ setAuthenticated }, { setName }, { setUserId }, { setEmail }, {setAvatar}] =
@@ -41,47 +41,56 @@ const Login = () => {
 
   return (
     <div className="form-container">
-      <div className="form-wrapper">
-        <h2>Login</h2>
-        <form className="login-form" onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            placeholder="your.email@gmail.com"
-            id="email"
-            name="email"
-            required
-          ></input>
-          <hr />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            placeholder="*********"
-            id="password"
-            name="password"
-            required
-          ></input>
-          <hr />
+      <div >
+        <motion.img className="logo" animate={{
+        scale: [1, 1, 1, 1, 1],
+        rotate: [0, 0, 180, 180, 0],
+        
+      }}
+      transition={{
+        duration: 2,
+        ease: "easeInOut",
+        times: [0, 0.2, 0.5, 0.8, 1],
+        
+      }} src="/Gift4u.png" alt="logo" />
+      </div>
+      <h2>Login</h2>
+      <form className="login-form" onSubmit={handleSubmit}> <br />
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          placeholder="your.email@gmail.com"
+          id="email"
+          name="email"
+          required
+        ></input> <br />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          placeholder="*********"
+          id="password"
+          name="password"
+          required
+        ></input>
+        <motion.button className="l-btn" whileHover={{scale:1.2}} type="submit">Login</motion.button>
+      </form>
+      {errorMessage && <p style={{ color: "darkred" }}>{errorMessage}</p>}
+      <br />
+      <div> <p> or login with:</p>
+      
+      <i class="fab fa-google"></i> 
+      <i class="fab fa-facebook"></i>  
 
-          <button type="submit">Submit</button>
-        </form>
-
-        {errorMessage && (
-          <p style={{ color: "darkred", marginTop: "10px" }}>{errorMessage}</p>
-        )}
-        <br />
-        <p>
-          Don't have an account? Register
-          <NavLink to="/register"> Here!</NavLink>
-        </p>
-        <p style={{ color: "Tomato" }}>
+      <i class="fab fa-instagram"></i>
+      </div>
+      <motion.p whileHover={{scale:1.2}}>
+        Don´t have an account? Register <NavLink className="linkin" to="/register">here! </NavLink>
+        
+      </motion.p>
+      <p style={{ color: "Tomato" }}>
           Forgot Password? <NavLink to="/reset-password">Click Here!</NavLink>
         </p>
-      </div>
-        <hr/>
-      <div>
-        <Login1 />
-      </div>
+
     </div>
   );
 };

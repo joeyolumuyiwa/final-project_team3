@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import "../Form.css";
 import axios from "axios";
 import Login1 from "./GoogleLogin";
 import UserContext from "./UserContext";
+import {motion} from "framer-motion"
 
 const Register = () => {
   const [, {setName}] = useContext(UserContext)
@@ -36,69 +37,73 @@ setName(user.name)
 
   return (
     <div className="form-container">
-      <div className="form-wrapper">
-        <h1>Create Account</h1>
-        <hr />
-        <form onSubmit={handleSubmit}>
-          <label> Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="full name"
-            required
-          ></input>
-          <hr />
-
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            placeholder="your.email@gmail.com"
-            id="email"
-            name="email"
-            required
-          ></input>
-          <hr />
-
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            placeholder="*********"
-            id="password"
-            name="password"
-            required
-          ></input>
-          <hr />
-
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            placeholder="*********"
-            id="confirmPassword"
-            name="confirmPassword"
-            required
-          ></input>
-          <hr />
-
-          <button type="submit">Submit</button>
-        </form>
-
-        <div>
-          {successMessage && !errorMessage ? (
-            <p style={{ color: "darkgreen", marginTop: "10px" }}>
-              {successMessage}
-            </p>
-          ) : (
-            <p style={{ color: "darkred", marginTop: "10px" }}>
-              {errorMessage}
-            </p>
-          )}
-        </div>
+      <div > <motion.img className="logo" animate={{
+        scale: [1, 1, 1, 1, 1],
+        rotate: [0, 0, 180, 180, 0],
+       
+      }}
+      transition={{
+        duration: 2,
+        ease: "easeInOut",
+        times: [0, 0.2, 0.5, 0.8, 1],
+      }} 
+     
+         src="/Gift4u.png" alt="logo" />
       </div>
-      <hr/>
-      <div>
-        <Login1 />
-      </div>
+      <h2>Register</h2>
+      <form className="register-form" onSubmit={handleSubmit}>
+        <label> Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="full name"
+          required
+        ></input>
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          placeholder="your.email@gmail.com"
+          id="email"
+          name="email"
+          required
+        ></input>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          placeholder="*********"
+          id="password"
+          name="password"
+          required
+        ></input>
+        <label htmlFor="confirmPassword">Confirm Password</label>
+               <input
+                  type="password"
+                  placeholder="*********"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  required
+               ></input>
+        
+       <NavLink to="/Redirect"><motion.button className="r-btn"  whileHover={{scale: 1.2}} type="submit" >Register </motion.button>
+      </NavLink>
+      </form>
+      {successMessage && !errorMessage ? (
+        <p style={{ color: "darkgreen" }}>{successMessage}</p>
+      ) : (
+        <p style={{ color: "darkred" }}>{errorMessage}</p>
+      )}
+      <div> <p> or register with:</p>
+      
+         <i class="fab fa-google"></i> 
+         <i class="fab fa-facebook"></i>  
+
+         <i class="fab fa-instagram"></i>
+         </div>
+        <motion.p whileHover={{scale:1.2}}>
+        Already have  an account? <br />
+        <NavLink to="/login" className="linkin">Login</NavLink>
+      </motion.p>
     </div>
   );
 };

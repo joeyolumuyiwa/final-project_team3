@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import videoGif from "../changepass.mp4"
 
 function ChangePassword() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -44,11 +45,13 @@ function ChangePassword() {
   };
 
   return (
-    <div className="form-container">
+    <div className="changepass-container">
       <div className="form-wrapper">
         {!successMessage && (
           <div>
             <h2>Change your password for your Gift4U account</h2>
+            <video className="changepass-img" src={videoGif} autoPlay loop muted> </video>
+            
             <form className="login-form" onSubmit={submitHandler}>
               <label htmlFor="currentPassword">
                 Enter your current password
@@ -76,7 +79,7 @@ function ChangePassword() {
                 placeholder="*********"
                 required
               />
-              <button type="submit">Reset Password</button>
+              <button type="submit" className="profile-btn">Reset Password</button>
             </form>
             {errorMessage && (
               <p style={{ color: "red" }}>
