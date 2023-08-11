@@ -1,41 +1,126 @@
-import React, {useContext} from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import UserContext from "./UserContext";
+import "./Navbar.css";
 
 const NavBar = () => {
-   const [{authenticated}, {name},,, {avatar}, {logoutHandler}] = useContext(UserContext)
-   
-   return <>
-      <header className="header" id="header">
-         <div className="container">
-           { authenticated && <div style={{display:"flex",alignItems:"center"}}>
-            {avatar && <img src={avatar} alt="User Avatar" style={{width:"60px", height:"60px", borderRadius:"50%", marginRight:"10px"}} />}
-               <h2>Welcome {name}</h2>
-            </div>}
-            <NavLink to='/home' className="logo">
-               Gift4U
-            </NavLink>
-            <ul className="main-nav">
-               <li>
-                  {!authenticated && <NavLink to='/register'> Register </NavLink>}
-               </li>
-               <li>
-                  {authenticated && <NavLink to="/my-profile">My Profile</NavLink>}
-               </li>
-               <li><NavLink to="/contact">Contact</NavLink></li>
-               <li>
-                  {authenticated ?
-                     <NavLink to="/login" onClick={logoutHandler}>Logout</NavLink>
-                     : <NavLink to="/login">Login</NavLink>
-                  }
-               </li>
-            </ul>
-         </div>
+  const [
+    { authenticated },
+    { name },
+    ,
+    ,
+    { avatar },
+    { logoutHandler },
+    { click, setClick },
+  ] = useContext(UserContext);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  return (
+    <>
+      <header className="navbar">
+        <div className="container">
+          {authenticated && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginLeft: "100px",
+              }}
+            >
+              {avatar && (
+                <img
+                  src={avatar}
+                  alt="User Avatar"
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "50%",
+                    marginRight: "20px",
+                  }}
+                />
+              )}
+              <h3>Welcome {name.split(" ")[0]}</h3>
+            </div>
+          )}
+          <NavLink to="/home" className="navbar-logo" onClick={closeMobileMenu}>
+            <img src="/logo-gift.png" alt="" />
+          </NavLink>
+          <div className="menu-icon" onClick={handleClick}>
+            <i className={click ? "fas fa-times" : "fas fa-bars"} />
+          </div>
+          <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <li className="nav-item">
+              <NavLink
+                to="/home"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Home
+              </NavLink>
+            </li>
+            {!authenticated && (
+              <li className="nav-item">
+                <NavLink
+                  to="/register"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  {" "}
+                  Register{" "}
+                </NavLink>
+              </li>
+            )}
+
+            {authenticated && (
+              <li className="nav-item">
+                <NavLink
+                  to="/my-profile"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  My Profile
+                </NavLink>
+              </li>
+            )}
+
+            <li className="nav-item">
+              <NavLink
+                to="/contact"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Contact
+              </NavLink>
+            </li>
+            {authenticated ? (
+              <li className="nav-item">
+                <NavLink
+                  to="/login"
+                  className="nav-links"
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </NavLink>
+              </li>
+            ) : (
+              <li className="nav-item">
+                {" "}
+                <NavLink
+                  to="/login"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  Login
+                </NavLink>
+              </li>
+            )}
+          </ul>
+        </div>
       </header>
-   </>;
+    </>
+  );
 };
 
 export default NavBar;
-
-
-

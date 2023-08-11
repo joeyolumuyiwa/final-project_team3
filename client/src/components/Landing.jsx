@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import videoGif from "../Gift4u.mp4";
 
 
  const Landing = () => {
@@ -9,13 +10,16 @@ import { useNavigate } from 'react-router-dom'
     useEffect(() => {
        setTimeout(() => {
           navigate('/home')
-       }, 3000)
+       }, 5000)
     }, [])
     return (
  
        <div className='landing'>
           <div className='container'>
-             <h1>Landing Page</h1>
+             <h1 className="open-msg">Welcome to your GIFT4U Shop</h1>
+             <video className="openVideo" src={videoGif} autoPlay loop muted>
+          {" "}
+        </video>
           </div></div>
     )
 }

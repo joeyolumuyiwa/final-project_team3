@@ -27,13 +27,6 @@ export const userSchema = new mongoose.Schema({
          ref: 'Profile'
       }
    },
-   posts:
-   {
-      type: [{
-         type: mongoose.Schema.Types.ObjectId,
-         ref: 'Post'
-      }]
-   },
    verified:{
       type: Boolean,
       default : false
