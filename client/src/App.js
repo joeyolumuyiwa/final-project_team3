@@ -25,6 +25,7 @@ const location = useLocation()
   const [userId, setUserId] = useState("");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState("")
+  const [click, setClick] = useState(false);
 
   let token;
 
@@ -66,6 +67,7 @@ const logoutHandler = () => {
     localStorage.removeItem("my-app-token"); 
     setName("");
     setAvatar("")
+    setClick(false)
 };
 
   return (
@@ -76,7 +78,8 @@ const logoutHandler = () => {
         { userId: userId, setUserId: setUserId },
         { email: email, setEmail: setEmail },
         {avatar: avatar, setAvatar: setAvatar},
-        {logoutHandler: logoutHandler}
+        {logoutHandler: logoutHandler},
+        {click: click, setClick: setClick}
       ]}
     >
       {location.pathname !== "/" && <  NavBar />}

@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../Form.css";
 import axios from "axios";
 import Login1 from "./GoogleLogin";
 import UserContext from "./UserContext";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const [, {setName}] = useContext(UserContext)
@@ -36,10 +37,25 @@ setName(user.name)
 
   return (
     <div className="form-container">
-      <div className="form-wrapper">
-        <h1>Create Account</h1>
-        <hr />
-        <form onSubmit={handleSubmit}>
+      <div>
+        {" "}
+        <motion.img
+          className="logo"
+          animate={{
+            scale: [1, 1, 1, 1, 1],
+            rotate: [0, 0, 180, 180, 0],
+          }}
+          transition={{
+            duration: 2,
+            ease: "easeInOut",
+            times: [0, 0.2, 0.5, 0.8, 1],
+          }}
+          src="/logo-gift.png"
+          alt="logo"
+        />
+      </div>
+      <h2>Register</h2>
+        <form className="register-form" onSubmit={handleSubmit}>
           <label> Name</label>
           <input
             type="text"
@@ -48,7 +64,6 @@ setName(user.name)
             placeholder="full name"
             required
           ></input>
-          <hr />
 
           <label htmlFor="email">Email</label>
           <input
@@ -58,7 +73,6 @@ setName(user.name)
             name="email"
             required
           ></input>
-          <hr />
 
           <label htmlFor="password">Password</label>
           <input
@@ -68,7 +82,6 @@ setName(user.name)
             name="password"
             required
           ></input>
-          <hr />
 
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
@@ -78,9 +91,15 @@ setName(user.name)
             name="confirmPassword"
             required
           ></input>
-          <hr />
 
-          <button type="submit">Submit</button>
+          <motion.button
+            className="r-btn"
+            whileHover={{ scale: 1.2 }}
+            type="submit"
+          >
+            Register{" "}
+          </motion.button>
+      
         </form>
 
         <div>
@@ -94,8 +113,14 @@ setName(user.name)
             </p>
           )}
         </div>
-      </div>
-      <hr/>
+
+        <motion.p whileHover={{ scale: 1.2 }}>
+        Already have an account? <br />
+        <NavLink to="/login" className="linkin">
+          Login
+        </NavLink>
+      </motion.p>
+      
       <div>
         <Login1 />
       </div>
