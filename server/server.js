@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import userRouter from "./routes/userRoute.js"
 import connectDB from "./config/db.js"
 import userModel from "./models/userModel.js";
+import vouchersRouter from "./routes/voucherRoute.js"
 
 const app = express();
 
@@ -19,12 +20,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // Home page
 app.get("/", async (req, res) => {
-  const numUsers = await userModel.estimatedDocumentCount();
-  res.json(numUsers);
+ /*  const numUsers = await userModel.estimatedDocumentCount();
+  res.json(numUsers); */
 });
 
 // Routes
 app.use("/api/user", userRouter)
+app.use("/api/vouchers", vouchersRouter)
 
 // Global error handler
 app.use((err, req, res, next) => {

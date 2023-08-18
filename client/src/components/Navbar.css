@@ -1,5 +1,5 @@
 .navbar {
-  background: linear-gradient(25deg,#8cc0de 58%, #fedea8 63%,#ff9b9b 50%);
+  background: linear-gradient(30deg,#8cc0de 45%, #fedea8 43%,#ff9b9b 70%,#8cc0de 8%);
   height: 100px;
   display: flex;
   justify-content: center;
@@ -29,6 +29,15 @@
   margin-top: -35px;
   margin-left: -20px;
   
+}
+
+.welcome {
+ width: 15px;
+  font-family: 'Lucida Sans' ;
+  font-style: italic;
+  font-weight: bold;
+  
+
 }
 
 .fa-firstdraft {
@@ -98,7 +107,7 @@
   }
 
   .nav-menu.active {
-    background: linear-gradient(78deg, #8cc0de 87%, #fedea8 91%,#ff9b9b 89%);
+    background: linear-gradient(-70deg, #8cc0de 47%, #fedea8 69%,#ff9b9b 9%,#8cc0de 27%);
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;

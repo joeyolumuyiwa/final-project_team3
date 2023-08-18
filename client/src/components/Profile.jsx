@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from "react";
-
-import { NavLink } from "react-router-dom";
-
+import React, { useState, useEffect, useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserContext from "./UserContext";
+import { useLocation } from 'react-router-dom'
 
 const Profile = () => {
+  const navigate = useNavigate()
+  const [
+    ,
+    ,
+    ,
+    ,
+    { avatar },
+  ] = useContext(UserContext);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [profile, setProfile] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
@@ -49,6 +58,7 @@ const Profile = () => {
     }
 
      //console.log(Array.from(userData)); 
+     console.log("profile", profile.avatar);
     
 
     axios
@@ -58,11 +68,13 @@ const Profile = () => {
         configuration
       )
       .then((res) => {
+        navigate(0)
         setSuccessMessage(res.data);
       })
       .catch((err) => {
         setErrorMessage(err.request.response);
       });
+     
   };
 
   return (
