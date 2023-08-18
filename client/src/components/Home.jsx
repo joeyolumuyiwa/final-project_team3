@@ -1,35 +1,123 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Slides from "./slides";
+import VoucherCards from "./VoucherCards";
+import "./home.css";
+import { NavLink } from "react-router-dom";
+import videoGif from "../Cream White Floral Vintage Inspirational Quote Card Landscape (2).mp4";
+import videoGif2 from "../bike.mp4";
+import videoGif3 from "../music.mp4";
+import videoGif4 from "../flower.mp4";
+import { Card } from "./Card";
 
+/* style={{border:"2px solid red"}} */
+
+const categoryList = [
+  { name: "restaurants", image: "./images/food.png" },
+  { name: "beauty", image: "./images/beauty.png" },
+  { name: "sport", image: "./images/sport.png" },
+  { name: "games", image: "./images/games.png" },
+  { name: "fashion", image: "./images/style.png" },
+  { name: "hobby", image: "./images/hobby.png" },
+  { name: "flower shop", image: "./images/garden.png" },
+  { name: "cinema", image: "./images/cinemas.png" }
+];
 const Home = () => {
-   const [usersNum, setUsersNum] = useState(null);
+ 
 
-   useEffect(() => {
-      axios
-         .get(`${process.env.REACT_APP_BE_URL}`)
-         .then((res) => {
-            setUsersNum(res.data);
-         })
-         .catch((err) => {
-            console.log(err.request.response);
-         });
-   }, []);
+  return (
+    <div className="home">
 
-   return (
-
-      <div className="landing">
-         <div className="container">
-            <div className="text">
-               <h1>Welcome, to our Gift4U Shop </h1>
-               <p>
-               Join our Gift4U Shop.
-               </p>
-               <h2>We have right now {usersNum} Customers.</h2>
-            </div>
-         </div>
-      
+      <div>
+        <NavLink to="/voucher/search" className="search-bar">
+          <div>
+            <i className="fa-solid fa-magnifying-glass">
+              {" "}
+              Search your next Gift!{" "}
+            </i>
+          </div>
+        </NavLink>
       </div>
-   );
+
+      <div className="open-carousel">
+        <div className="home-carousel">
+          {categoryList.map((el, index) => (
+             <NavLink to = {`voucher/${el.name}`}>
+              <div key={index}>
+             <img
+              className="gift-logo"
+              src={el.image}
+              alt=""
+            /> 
+            </div>   
+             </NavLink>
+          ))}
+        </div>
+      </div>
+      <br />
+
+      {/* <div style={{ margin: "20px 0" }}>
+        <Slides />
+      </div> */}
+      <div className="birth-gift">
+        <div> Our best Birthday cards </div>
+      </div>
+      <div>
+        <video className="birth-video" src={videoGif} autoPlay loop muted>
+          {" "}
+        </video>
+      </div>
+      <div className="list-container">
+        <div className="birth-list">
+          <div>
+            <Card img="./images/birth.png" />
+          </div>
+          <div>
+            <Card img="./images/birth1.png" />
+          </div>
+          <div>
+            <Card img="./images/birth2.png" />
+          </div>
+          <div>
+            <Card img="./images/birth3.png" />
+          </div>
+          <p className="more-button">
+            <i className="fa-solid fa-gifts"></i> See more...
+          </p>
+        </div>
+      </div>
+      <br />
+      <div>
+        <div className="gift-bar">
+          {" "}
+          <i className="fa-solid fa-crown"> HOT Gifts! </i>
+        </div>
+
+        <div className="video-container">
+          <div>
+            <video className="birth-video2" src={videoGif2} autoPlay loop muted>
+              {" "}
+            </video>
+          </div>
+          <div>
+            <video className="birth-video3" src={videoGif3} autoPlay loop muted>
+              {" "}
+            </video>
+            <video className="birth-video4" src={videoGif4} autoPlay loop muted>
+              {" "}
+            </video>
+          </div>
+        </div>
+      </div>
+      
+
+      <div>
+        <div>
+        <VoucherCards />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;

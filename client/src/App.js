@@ -16,6 +16,11 @@ import UserContext from "./components/UserContext";
 import { useLocation } from 'react-router-dom'
 import Landing from "./components/Landing";
 import axios from "axios";
+import Footer from "./components/Footer";
+import VoucherSearch from "./components/VoucherSearch";
+import CategoryPage from "./components/CategoryPage";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+
 
 function App() {
 const location = useLocation()
@@ -49,7 +54,7 @@ const location = useLocation()
           setName(res.data.name);
           setAuthenticated(true);
           setUserId(res.data.userId);
-          res.data.avatar? setAvatar(res.data.avatar) : setAvatar("https://cdn-icons-png.flaticon.com/512/6388/6388000.png") 
+          res.data.avatar? setAvatar(res.data.avatar) : setAvatar("https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png") 
         })
         .catch((err) => {
           if(err.response.status === 401)
@@ -83,6 +88,7 @@ const logoutHandler = () => {
       ]}
     >
       {location.pathname !== "/" && <  NavBar />}
+      
       <div className="App">
         <Routes>
           <Route path="/" element={<Landing/>}/>
@@ -99,8 +105,12 @@ const logoutHandler = () => {
             path="/reset-password/:email/:token"
             element={<PasswordRecovery />}
           />
+          <Route path="/voucher/search" element={<VoucherSearch/>} />
+          <Route path="home/voucher/:category" element={<CategoryPage/>} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </div>
+      {location.pathname !== "/" && <Footer />}
     </UserContext.Provider>
   );
 }
