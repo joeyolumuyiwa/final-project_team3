@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import UserContext from "./UserContext";
+import {UserContext} from "./UserContext";
 
 export default function Redirect() {
    const [, {name}] = useContext(UserContext)

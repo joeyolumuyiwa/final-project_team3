@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Button, Card, Grid, Col, Row, Dropdown, DropdownButton } from "react-bootstrap";
 import axios from "axios";
 import VoucherDetailsModal from "./VoucherDetailsModal"
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
+import {VoucherContext} from "./UserContext";
 
  const CategoryPage = () => {
+
+  const [{ setSelectedVoucher }] = useContext(VoucherContext);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [vouchers, setVouchers] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
 
-
-  const [selectedVoucher, setSelectedVoucher] = useState(null);
   const [showModal, setShowModal] = useState(false)
 
 
@@ -55,7 +57,7 @@ const cancelHandler = ()=>{
         </Col>
       ))}
     </div>
-    <VoucherDetailsModal visible={showModal} voucher={selectedVoucher} onCancel={cancelHandler}/>
+    <VoucherDetailsModal visible={showModal} onCancel={cancelHandler}/>
     </div>
   )
 }

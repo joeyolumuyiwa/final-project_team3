@@ -42,8 +42,8 @@ const Home = () => {
       <div className="open-carousel">
         <div className="home-carousel">
           {categoryList.map((el, index) => (
-             <NavLink to = {`voucher/${el.name}`}>
-              <div key={index}>
+             <NavLink to = {`voucher/${el.name}`} key={index}>
+              <div>
              <img
               className="gift-logo"
               src={el.image}
