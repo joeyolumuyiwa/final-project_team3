@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import UserContext from "./UserContext";
+import {UserContext} from "./UserContext";
 import { useLocation } from 'react-router-dom'
 
 const Profile = () => {

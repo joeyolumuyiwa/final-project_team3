@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Button, Card, Grid, Col, Row, Dropdown, DropdownButton } from "react-bootstrap";
 import axios from "axios";
-import VoucherDetailsModal from "./VoucherDetailsModal"
+import VoucherDetailsModal from "./VoucherDetailsModal";
+import {VoucherContext} from "./UserContext";
 
 
 const VoucherCards = () => {
+
+  const [{ setSelectedVoucher }] = useContext(VoucherContext);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [vouchers, setVouchers] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
 
-  const [selectedVoucher, setSelectedVoucher] = useState(null);
   const [showModal, setShowModal] = useState(false)
 
   const [category, setCategory] = useState("")
@@ -78,7 +81,7 @@ else if (!category && !location) {
 
       <Dropdown.Menu>
         {categoryList.map((item,index)=>(
-          <Dropdown.Item eventKey={index}>{item}</Dropdown.Item>
+          <Dropdown.Item key={index}>{item}</Dropdown.Item>
         ))}
       </Dropdown.Menu>
     </Dropdown>
@@ -91,7 +94,7 @@ else if (!category && !location) {
 
       <Dropdown.Menu>
         {locationList.map((item,index)=>(
-          <Dropdown.Item eventKey={index}>{item}</Dropdown.Item>
+          <Dropdown.Item key={index}>{item}</Dropdown.Item>
         ))}
       </Dropdown.Menu>
     </Dropdown>
@@ -114,7 +117,7 @@ else if (!category && !location) {
         </Col>
       ))}
     </div>
-    <VoucherDetailsModal visible={showModal} voucher={selectedVoucher} onCancel={cancelHandler}/>
+    <VoucherDetailsModal visible={showModal} onCancel={cancelHandler}/>
     </div>
 
   );

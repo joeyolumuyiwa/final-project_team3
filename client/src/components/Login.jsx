@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Form.css";
 import Login1 from "./GoogleLogin";
-import UserContext from "./UserContext";
+import {UserContext} from "./UserContext";
 import { motion } from "framer-motion";
 
 

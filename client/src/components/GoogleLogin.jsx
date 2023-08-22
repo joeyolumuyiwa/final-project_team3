@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { GoogleLogin } from "react-google-login";
 import { useNavigate } from "react-router-dom";
 import { gapi } from "gapi-script";
-import UserContext from "./UserContext";
+import {UserContext} from "./UserContext";
 import axios from "axios";
 import { motion } from "framer-motion";
 

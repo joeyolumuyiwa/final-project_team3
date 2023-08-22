@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { motion } from "framer-motion";
 import "./search.css";
 import axios from "axios";
@@ -12,13 +12,17 @@ import {
   DropdownButton,
 } from "react-bootstrap";
 import VoucherDetailsModal from "./VoucherDetailsModal";
+import {VoucherContext} from "./UserContext";
+
 
 const VouchersSearch = () => {
+
+  const [{ setSelectedVoucher }] = useContext(VoucherContext);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [message, setMessage] = useState("");
 
   const [vouchers, setVouchers] = useState([]);
-  const [selectedVoucher, setSelectedVoucher] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -99,8 +103,8 @@ const VouchersSearch = () => {
           )}
         </div>
       </div>
-      <div style={{ margin: "20px" }}>
-      <Row xs={1} md={2} className="g-4">
+      <div style={{width:"90%", margin: "20px auto" }}>
+      <div className="g-4" style={{borderRadius:"25px"}}>
       {vouchers.map((item, index) => (
         <Col key={index}>
           <Card
@@ -115,17 +119,16 @@ const VouchersSearch = () => {
             <Card.Body style={{ border: "1px solid lightgrey" }}>
               <Card.Title>{item.name}</Card.Title>
               <Card.Text>{item.category}</Card.Text>
-              <Button variant="primary">Select Me</Button>
+              {/* <Button variant="primary">Select Me</Button> */}
             </Card.Body>
           </Card>
         </Col>
       ))}
-    </Row> 
+    </div> 
       </div>
   
       <VoucherDetailsModal
         visible={showModal}
-        voucher={selectedVoucher}
         onCancel={cancelHandler}
       />
     </>

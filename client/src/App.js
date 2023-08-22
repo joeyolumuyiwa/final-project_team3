@@ -12,25 +12,31 @@ import Redirect from "./components/Redirect";
 import ResetPassword from "./components/ResetPassword";
 import PasswordRecovery from "./components/PasswordRecovery";
 import ChangePassword from "./components/ChangePassword";
-import UserContext from "./components/UserContext";
-import { useLocation } from 'react-router-dom'
+import { UserContext, VoucherContext } from "./components/UserContext";
+import { useLocation } from "react-router-dom";
 import Landing from "./components/Landing";
 import axios from "axios";
 import Footer from "./components/Footer";
 import VoucherSearch from "./components/VoucherSearch";
 import CategoryPage from "./components/CategoryPage";
 import PrivacyPolicy from "./components/PrivacyPolicy";
-
+import SelectVoucherPage from "./components/SelectVoucherPage";
+import GreetingCard from "./components/GreetingCard";
+import Cart from "./components/Cart";
 
 function App() {
-const location = useLocation()
+  const location = useLocation();
 
   const [authenticated, setAuthenticated] = useState(false);
   const [name, setName] = useState("");
   const [userId, setUserId] = useState("");
   const [email, setEmail] = useState("");
-  const [avatar, setAvatar] = useState("")
+  const [avatar, setAvatar] = useState("");
   const [click, setClick] = useState(false);
+
+  const [selectedVoucher, setSelectedVoucher] = useState(null);
+  const [selectedPrice, setSelectedPrice] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   let token;
 
@@ -46,34 +52,40 @@ const location = useLocation()
     },
   };
 
-     useEffect(() => {
+  useEffect(() => {
     if (token !== null) {
       axios
-        .get(`${process.env.REACT_APP_BE_URL}/api/user/authorize-user`, configuration)
+        .get(
+          `${process.env.REACT_APP_BE_URL}/api/user/authorize-user`,
+          configuration
+        )
         .then((res) => {
           setName(res.data.name);
           setAuthenticated(true);
           setUserId(res.data.userId);
-          res.data.avatar? setAvatar(res.data.avatar) : setAvatar("https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png") 
+          res.data.avatar
+            ? setAvatar(res.data.avatar)
+            : setAvatar(
+                "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+              );
         })
         .catch((err) => {
-          if(err.response.status === 401)
-          localStorage.removeItem("my-app-token");
+          if (err.response.status === 401)
+            localStorage.removeItem("my-app-token");
           localStorage.removeItem("my-profile");
-          console.log(err.message)
+          console.log(err.message);
         });
     }
-  }, []);   
-  
+  }, []);
 
-const logoutHandler = () => {
-  setAuthenticated(false);
+  const logoutHandler = () => {
+    setAuthenticated(false);
     localStorage.removeItem("my-profile");
-    localStorage.removeItem("my-app-token"); 
+    localStorage.removeItem("my-app-token");
     setName("");
-    setAvatar("")
-    setClick(false)
-};
+    setAvatar("");
+    setClick(false);
+  };
 
   return (
     <UserContext.Provider
@@ -82,35 +94,49 @@ const logoutHandler = () => {
         { name: name, setName: setName },
         { userId: userId, setUserId: setUserId },
         { email: email, setEmail: setEmail },
-        {avatar: avatar, setAvatar: setAvatar},
-        {logoutHandler: logoutHandler},
-        {click: click, setClick: setClick}
+        { avatar: avatar, setAvatar: setAvatar },
+        { logoutHandler: logoutHandler },
+        { click: click, setClick: setClick },
       ]}
     >
-      {location.pathname !== "/" && <  NavBar />}
-      
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Landing/>}/>
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/confirm-email/:token" element={<ConfirmEmail />} />
-          <Route path="/redirect" element={<Redirect />} />
-          <Route path="/my-profile" element={<Profile />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/change-password" element={<ChangePassword />} />
-          <Route
-            path="/reset-password/:email/:token"
-            element={<PasswordRecovery />}
-          />
-          <Route path="/voucher/search" element={<VoucherSearch/>} />
-          <Route path="home/voucher/:category" element={<CategoryPage/>} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        </Routes>
-      </div>
-      {location.pathname !== "/" && <Footer />}
+      <VoucherContext.Provider
+        value={[
+          {
+            selectedVoucher: selectedVoucher,
+            setSelectedVoucher: setSelectedVoucher,
+          },
+          { selectedPrice: selectedPrice, setSelectedPrice: setSelectedPrice },
+          { selectedImage: selectedImage, setSelectedImage: setSelectedImage },
+        ]}
+      >
+        {location.pathname !== "/" && <NavBar />}
+
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/confirm-email/:token" element={<ConfirmEmail />} />
+            <Route path="/redirect" element={<Redirect />} />
+            <Route path="/my-profile" element={<Profile />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/change-password" element={<ChangePassword />} />
+            <Route
+              path="/reset-password/:email/:token"
+              element={<PasswordRecovery />}
+            />
+            <Route path="/voucher/search" element={<VoucherSearch />} />
+            <Route path="home/voucher/:category" element={<CategoryPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/select-voucher" element={<SelectVoucherPage />} />
+            <Route path="/select-voucher/greeting-card" element={<GreetingCard />} />
+            <Route path="/shopping-cart" element={<Cart />} />   
+          </Routes>
+        </div>
+        {location.pathname !== "/" && <Footer />}
+      </VoucherContext.Provider>
     </UserContext.Provider>
   );
 }
