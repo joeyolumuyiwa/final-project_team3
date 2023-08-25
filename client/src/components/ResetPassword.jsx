@@ -42,10 +42,10 @@ function PasswordReset() {
                 placeholder="your.email@gmail.com"
                 required
               />
-              <button type="submit">Reset Password</button>
+              <button className="reset-button" type="submit">Reset Password</button>
               <button
                 style={{ marginTop: "10px" }}
-                className="cancel-btn"
+                className="cancel-button"
                 onClick={() => navigate("/login")}
               >
                 Cancel

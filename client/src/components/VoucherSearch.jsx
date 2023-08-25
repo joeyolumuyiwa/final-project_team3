@@ -104,7 +104,7 @@ const VouchersSearch = () => {
           )}
         </div>
       </div>
-      <div style={{width:"90%", margin: "20px auto" }}>
+      <div style={{width:"100%", margin: "20px auto" , background: "#8cc0de58 "}}>
       <div className="g-4" style={{borderRadius:"25px"}}>
       {vouchers.map((item, index) => (
         <Col key={index}>

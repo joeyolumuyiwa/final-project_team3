@@ -147,10 +147,12 @@ navigate("/select-voucher/greeting-card")
         <div className="voucher-cont">
         <Col style={{ border: "none" }}>
           <h2>{nameToUpperCase(savedVoucher.name).join(" ")}</h2>
+        
+
           <Card style={{ border: "none" }}>
             <Card.Img
               src={selectedPrice ? selectedImage : savedVoucher.card}
-              style={{ maxWidth: "100%", height: "auto" }}
+              style={{ maxWidth: "100%", height: "auto", border: "2px solid #fedea8", padding: "4px" }}
             />
             <Card.Body
               style={{
