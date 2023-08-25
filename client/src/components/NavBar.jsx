@@ -58,7 +58,7 @@ const NavBar = () => {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Home
+               <i class="fa-solid fa-house"> Home</i> 
               </NavLink>
             </li>
             {!authenticated && (
@@ -69,7 +69,7 @@ const NavBar = () => {
                   onClick={closeMobileMenu}
                 >
                   {" "}
-                  Register{" "}
+                  <i class="fa-solid fa-clipboard-user">  Register</i>  {" "}
                 </NavLink>
               </li>
             )}
@@ -81,7 +81,7 @@ const NavBar = () => {
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  My Profile
+                <i class="fa-solid fa-user"> My Profile</i>  
                 </NavLink>
               </li>
             )}
@@ -92,7 +92,7 @@ const NavBar = () => {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Contact Us
+                <i class="fa-solid fa-phone-volume"> Contact Us</i>
               </NavLink>
             </li>
             {authenticated ? (
@@ -102,7 +102,7 @@ const NavBar = () => {
                   className="nav-links"
                   onClick={logoutHandler}
                 >
-                  Logout
+                  <i class="fa-solid fa-arrow-right-from-bracket"> Logout</i>
                 </NavLink>
               </li>
             ) : (
@@ -113,7 +113,7 @@ const NavBar = () => {
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  Login
+                  <i class="fa-solid fa-right-to-bracket"> Login</i>
                 </NavLink>
               </li>
             )}

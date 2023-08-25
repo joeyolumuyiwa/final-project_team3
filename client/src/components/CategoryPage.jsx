@@ -50,7 +50,7 @@ const cancelHandler = ()=>{
             />
             <Card.Body style={{ border: "1px solid lightgrey" }}>
               <Card.Title>{item.name}</Card.Title>
-              <Card.Text>{item.category}</Card.Text>
+              
              {/*  <Button variant="primary">Select Me</Button> */}
             </Card.Body>
           </Card>

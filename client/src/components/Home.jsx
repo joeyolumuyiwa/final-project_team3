@@ -9,6 +9,7 @@ import videoGif2 from "../bike.mp4";
 import videoGif3 from "../music.mp4";
 import videoGif4 from "../flower.mp4";
 import { Card } from "./Card";
+import BottomNav from "./BottomNav";
 
 /* style={{border:"2px solid red"}} */
 
@@ -38,6 +39,7 @@ const Home = () => {
           </div>
         </NavLink>
       </div>
+      
 
       <div className="open-carousel">
         <div className="home-carousel">
@@ -115,7 +117,7 @@ const Home = () => {
         <div>
         <VoucherCards />
         </div>
-      </div>
+      </div><BottomNav/>
     </div>
   );
 };

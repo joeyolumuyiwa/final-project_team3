@@ -5,7 +5,7 @@ import LoginFirstModal from "./LoginFirstModal";
 import { useNavigate } from "react-router-dom";
 import Calender from "./Calender";
 import validator from "validator";
-
+import "./SelectVoucherPage.css"
 
 const SelectVoucherPage = () => {
   const [
@@ -144,6 +144,7 @@ navigate("/select-voucher/greeting-card")
   return (
     <>
       <div style={{ margin: "20px auto" }}>
+        <div className="voucher-cont">
         <Col style={{ border: "none" }}>
           <h2>{nameToUpperCase(savedVoucher.name).join(" ")}</h2>
           <Card style={{ border: "none" }}>
@@ -160,24 +161,25 @@ navigate("/select-voucher/greeting-card")
                 background: "#ffffff5a",
               }}
             >
-              <div>
+              <div className="selectPrice">
                 <h3 style={{ margin: "20px 0" }}>
-                  Selected Price: {selectedPrice ? selectedPrice + " €" : ""}
-                </h3>
+                  Selected Price: <div className="price-cho" > {selectedPrice ? selectedPrice + " €" : ""}
+               </div> </h3>
                 <div
                   style={{
                     marginTop: "20px",
                     display: "flex",
+                    
                     justifyContent: "space-around",
                     background: "#ffffff5a",
                   }}
                 >
                   {savedVoucher.price.map((el, index) => (
-                    <Button
+                    <Button className="price-button"
                       key={index}
                       value={el + " €"}
                       style={{
-                        background: "none",
+            
                         color: "black",
                         border: "1px solid black",
                       }}
@@ -191,20 +193,20 @@ navigate("/select-voucher/greeting-card")
               </div>
               <hr />
 
-              <div>
-                <h3>Quantity: {quantity}</h3>
-                <Button onClick={handleDecrement}>-</Button>
+              <div className="quantity">
+                <h3>Quantity: <div style={{color:"black",}}>{quantity}</div> </h3>
+                <Button className="button" onClick={handleDecrement}>-</Button>
                 <input
                   type="text"
                   value={quantity}
                   onInput={quantityHandler}
                 />
-                <Button onClick={handleIncrement}>+</Button>
-              </div>
-              <p>Set the quantity from 1 to 10</p>
+                <Button className="button" onClick={handleIncrement}>+</Button>
               
+              <p>Set the quantity from 1 to 10</p>
+              </div>
               <hr />
-              <div style={{ display: "flex", flexDirection: "column" }}>
+              <div className="form-recipient" style={{ display: "flex", flexDirection: "column" }}>
                 <h3>Recipient Information</h3>
                 <label htmlFor="email">Recipient email address</label>
                 <input
@@ -242,10 +244,10 @@ navigate("/select-voucher/greeting-card")
                 <p style={{color:"grey", marginTop:"5px", fontSize:"12px"}}>350 characters maximum!</p>
               </div>
               <hr />
-              <div>
+              <div className="delivery">
                 <h3>Delivery Time</h3>
                 <div>
-                <input   type="checkbox"
+                <input    type="checkbox"
                   id="instantDelivery"
                   checked={instantDelivery}
                   name="instantDelivery"
@@ -262,7 +264,7 @@ navigate("/select-voucher/greeting-card")
                   required
                   onChange={handleFutureCheck} />
                   <label htmlFor="futureDelivery" style={{marginLeft:"10px"}}>Send on a future date</label>
-                  {futureDelivery && <Calender setCalenderDate = {setCalenderDate} setShowCalenderMessage= {setShowCalenderMessage}/>}
+                  {futureDelivery && <Calender  setCalenderDate = {setCalenderDate} setShowCalenderMessage= {setShowCalenderMessage}/>}
              </div>
              {showCalenderMessage && <p style={{color:"red", marginTop:"20px"}}>Select a date!</p>}  
               </div>
@@ -280,10 +282,16 @@ navigate("/select-voucher/greeting-card")
               <Button
                 variant="danger"
                 style={{
+                  background: "#fedea8fa",
                   padding: "10px 10px",
                   fontWeight: "bold",
                   width: "50%",
                   margin: "0,auto",
+                  color: "black",
+                  borderRadius: "15px",
+                  border: "2px solid #ff9b9b",
+                  boxShadow: "#ff9b9b 4px 2px"
+                  
                 }}
                 onClick={submitHandler}
               >
@@ -292,6 +300,7 @@ navigate("/select-voucher/greeting-card")
             </div>
           </Card>
         </Col>
+      </div>
       </div>
       {/*  <LoginFirstModal visible={showModal} onCancel={cancelHandler}/> */}
     </>

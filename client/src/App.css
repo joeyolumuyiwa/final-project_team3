@@ -19,6 +19,7 @@
    
  }
  
+ 
  .form-container, .login-form , .register-form {
    display: flex;
    flex-direction: column;
@@ -59,28 +60,59 @@
    border-radius: 15px;
    padding: 1rem;
    border: 1px solid #ff9090;
+   background-color: #fedea8fa;
+    border-radius: 15px;box-shadow: #ff9b9b 4px 4px;
    
    
  
  }
+ .m-btn {
+  
  
+    border-radius: 22px;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 2rem;
+    font-weight: bold; 
+    width: 10rem;  
+    background: #fedea8fa;
+    color: rgb(108, 106, 106);
+    border: 2px solid #ff9b9b;
+    box-Shadow: #ff9b9b 4px 2px;
+    
+  
+ }
+
+ .m-btn:hover {
+  color: #ff9090;
+ }
+
  .l-btn {
-   border:#fd7272  solid 2px;
+ 
    border-radius: 22px;
    padding: 12px;
    cursor: pointer;
-   color: #ffffffff ;
    font-size: 18px;
-   background:linear-gradient(45deg,#fedea8e4 5%, #ff9b9b 75%, #fedea8e4 100%, #ff9b9bbe 95%);
    margin-top: 2rem;
    font-weight: bold; 
    width: 10rem;  
+   background: #fedea8fa;
    
+
+   color: black;
+  
+   border: 2px solid #ff9b9b;
+   box-Shadow: #ff9b9b 4px 2px;
    
  }
+   
+ 
+  
+
  
  .r-btn {
-  border:#fd7272  solid 2px;
+  border: #fbd09e  solid 2px;
   border-radius: 22px;
   padding: 12px;
   cursor: pointer;
@@ -90,6 +122,7 @@
   margin-top: 2rem;
   font-weight: bold; 
   width: 10rem;  
+  box-shadow: #fbd09e  2px 4px;
   
   
 }
@@ -99,14 +132,13 @@
    font-size: 30px;
  }
  
- .logo {
+ .A-logo {
   width: 14rem;
   border:  #FFD9C0 solid 2px;
   margin: 2px;
   border-radius:200px  ;
- 
- 
 
+ 
  
  }
  .fab
@@ -145,15 +177,22 @@
 }
 
 .linkin {
-  color: #ffffff;
-  border: 2px solid #ff9b9b ;
-  background: linear-gradient(15deg, #ffe0cbf7 10%, #fd7272)95% ;
-  border-radius: 9px;
-  padding: 3px;
+  border-radius: 15px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 15px;
+
+  font-weight: bold; 
+  width: 10rem;  
+  background: #fedea8fa;
+  color: rgb(108, 106, 106);
+  border: 2px solid #ff9b9b;
+  box-Shadow: #ff9b9b 4px 2px;
+  
 }
 
 .linkin:hover {
-  color: #2998d0;
+  color: #ff9090;
 
 }
 
@@ -175,17 +214,18 @@
 }
 
 .profile-btn {
-  border:#fd7272  solid 2px;
+
   border-radius: 15px;
-  padding: 8px;
+  padding: 10px;
   cursor: pointer;
-  color: #ffffffff ;
-  font-size: 16px;
-  background:linear-gradient(45deg,#fedea8e4 5%, #ff9b9b 75%, #fedea8e4 100%, #ff9b9bbe 95%);
-  margin-top: 20px;
+  font-size: 15px;
+  margin-top: 2rem;
   font-weight: bold; 
-  width: 100%;  
-  
+  width: 10rem;  
+  background: #fedea8fa;
+  color: rgb(108, 106, 106);
+  border: 2px solid #ff9b9b;
+  box-Shadow: #ff9b9b 4px 2px;
   
 }
 
@@ -265,46 +305,77 @@
  flex-direction: row;
  flex-wrap: wrap;
  align-items: center;
- background: linear-gradient(-75deg, #8cc0deb3 47%, #fedea8 69%,#ff9b9b 9%,#8cc0ded2 27%);
  justify-content: center;
+ border-radius: 20px;
 }
 
 .g-4 .card {
  width: 180px;
- padding: 15px; 
- height: 250px;
- border-radius: 25px;
- margin: 5px;
- border: #fbd09e 2px solid;
- background-color: #8cc0dec0;
+ height: 200px ;
+ cursor: pointer;
+ margin: 12px;
+ overflow: hidden;
  color: white;
  font-family: 'Lucida Sans' ;
  font-style: italic;
  font-weight: bold;
+ box-shadow: #e4d288 2px 4px;
+ padding: 10px;
+
  
   
+}
+
+.g-4 .card:hover {
+  transform: scale(1.2);
+}
+
+.g-4 .voucher-img {
+  border: #fbd09e 2px solid;
+width: 100%;
+cursor: pointer;
+}
+
+.g-4 .voucher-img:hover {
+  transform: scale(1.2);
 }
 
 #dropdown-basic  {
  
  border-radius: 25px;
- border: #fedea8 2px solid;
+ border: #fedea8 3px solid;
  font-family: 'Lucida Sans' ;
  font-style: italic;
  font-weight: bold;
  margin-top: 5px;
- background: linear-gradient(70deg,#ff9b9b 89%, #fedea8 89%,#8cc0de 97%);
+ background-color:#8cc0de ;
 
 }
 
 .vou-button {
  border-radius: 25px ;
  border: #fbd09e 2px solid;
- background:   #8cc0de; 
+ background: #8cc0de58 ;
+ 
 }
 
 .card-body {
  
- background: linear-gradient(110deg,#ff9b9b 69%, #fedea8 89%,#8cc0de 97%);
+  
+
 }
 
+.g-4 .col {
+  display: flex;
+  justify-content: center;
+  
+  
+}
+
+.g-4 .card-title {
+  
+  font-family: 'Lucida Sans';
+  font-size: 22px;
+  font-style: italic;
+  color: rgb(70, 67, 67);
+}

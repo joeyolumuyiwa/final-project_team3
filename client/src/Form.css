@@ -5,7 +5,7 @@
    padding-top: 30px;
    background: #8cc0de;
    width: 95%;
-  
+   box-shadow: #e4d288 4px 4px;
    padding: 30px;
  
 }
@@ -21,6 +21,7 @@
 .form-wrapper form {
    display: flex;
    flex-direction: column;
+
 }
 
 .form-wrapper label {
@@ -31,7 +32,8 @@
 .form-wrapper textarea {
    margin-bottom: 16px;
    padding: 8px;
-
+   background-color: #fedea8fa;
+   border-radius: 15px;box-shadow: #ff9b9b 4px 4px;
    resize: none;
 
 }

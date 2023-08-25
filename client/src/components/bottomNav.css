@@ -1,0 +1,80 @@
+
+  .icon1 {
+    height: 60px;
+    width: 50%;
+    background: linear-gradient(70deg, #8cc0de 57%, #fedea8 59%,#ff9b9b 89%,#8cc0de 27%);
+    border-radius: 0px 150px 0px 0px;
+    display: flex ;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .icon1 i {
+    color: #6c6c6c;
+    font-size: 20px;
+  }
+
+  .icon1 i:hover {
+    transform: scale(2);
+    cursor: pointer;
+    background-color: #fb7b78;
+    border-radius: 500%;
+  }
+  .icon2 i {
+    color: #6c6c6c;
+    font-size: 20px;
+  }
+  .icon2 i:hover {
+    transform: scale(2);
+    cursor: pointer;
+    background-color: #fb7b78;
+    border-radius: 50%;
+  }
+  .icon2 {
+    height: 60px;
+    width: 50%;
+    display: flex ;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 150px 0px 0px 0px;
+    background:linear-gradient(-70deg, #8cc0de 57%, #fedea8 59%,#ff9b9b 89%,#8cc0de 27%);
+  }
+
+  .bottom-bar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: auto;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    
+  }
+
+.b-logo img {
+    width: 85px;
+    translate: 0px -30px 0px;
+    object-fit: cover;
+    border-radius: 500px;
+    border: #ff9b9b 2px solid;
+   box-shadow: #ff9b9b 2px 2px;
+    
+  
+}
+
+.b-logo {
+   width: auto;
+  
+    display: flex;
+    justify-content: center;
+    border: none;
+  
+   
+  
+ 
+    
+}
+
+.b-logo:hover {
+    transform: scale(1.2);
+}

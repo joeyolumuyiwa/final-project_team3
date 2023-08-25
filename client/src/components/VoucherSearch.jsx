@@ -15,6 +15,7 @@ import VoucherDetailsModal from "./VoucherDetailsModal";
 import {VoucherContext} from "./UserContext";
 
 
+
 const VouchersSearch = () => {
 
   const [{ setSelectedVoucher }] = useContext(VoucherContext);
@@ -88,7 +89,7 @@ const VouchersSearch = () => {
               placeholder="Berlin, Munich..."
             />
             <motion.button
-              className="l-btn"
+              className="profile-btn"
               whileHover={{ scale: 1.2 }}
               type="submit"
             >
@@ -131,6 +132,7 @@ const VouchersSearch = () => {
         visible={showModal}
         onCancel={cancelHandler}
       />
+      
     </>
   );
 };

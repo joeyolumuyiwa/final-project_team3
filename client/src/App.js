@@ -24,6 +24,8 @@ import SelectVoucherPage from "./components/SelectVoucherPage";
 import GreetingCard from "./components/GreetingCard";
 import Cart from "./components/Cart";
 
+
+
 function App() {
   const location = useLocation();
 
@@ -109,8 +111,8 @@ function App() {
           { selectedImage: selectedImage, setSelectedImage: setSelectedImage },
         ]}
       >
-        {location.pathname !== "/" && <NavBar />}
-
+       <div className="navbar-f">{location.pathname !== "/" && <NavBar/>}</div> 
+         
         <div className="App">
           <Routes>
             <Route path="/" element={<Landing />} />
@@ -135,7 +137,9 @@ function App() {
             <Route path="/shopping-cart" element={<Cart />} />   
           </Routes>
         </div>
-        {location.pathname !== "/" && <Footer />}
+        
+        
+      <div className="footer"> {location.pathname !== "/" && <Footer />}</div> 
       </VoucherContext.Provider>
     </UserContext.Provider>
   );

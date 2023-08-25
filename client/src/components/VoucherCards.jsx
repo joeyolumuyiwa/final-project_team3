@@ -5,6 +5,7 @@ import VoucherDetailsModal from "./VoucherDetailsModal";
 import {VoucherContext} from "./UserContext";
 
 
+
 const VoucherCards = () => {
 
   const [{ setSelectedVoucher }] = useContext(VoucherContext);
@@ -75,9 +76,7 @@ else if (!category && !location) {
       <Dropdown
        onSelect={handleSelectCategory}
       >
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Select Category
-      </Dropdown.Toggle>
+   
 
       <Dropdown.Menu>
         {categoryList.map((item,index)=>(
@@ -88,9 +87,7 @@ else if (!category && !location) {
     <Dropdown
        onSelect={handleSelectLocation}
       >
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Select City
-      </Dropdown.Toggle>
+      
 
       <Dropdown.Menu>
         {locationList.map((item,index)=>(
@@ -98,19 +95,19 @@ else if (!category && !location) {
         ))}
       </Dropdown.Menu>
     </Dropdown>
-      </div>
+      
     <div className="g-4">
       {vouchers.map((item, index) => (
         <Col key={index}>
           <Card style={{ border: "1px solid lightgrey" }} onClick={()=>showVoucherDetailsHandler(item)}>
-            <Card.Img
+            <Card.Img className="voucher-img"
               variant="top"
               src={item.card}
-              style={{ maxWidth: "100%", height: "auto" }}
+              
             />
-            <Card.Body style={{ border: "1px solid lightgrey" }}>
+            <Card.Body >
               <Card.Title>{item.name}</Card.Title>
-              <Card.Text>{item.category}</Card.Text>
+              
              {/*  <Button variant="primary">Select Me</Button> */}
             </Card.Body>
           </Card>
@@ -119,7 +116,7 @@ else if (!category && !location) {
     </div>
     <VoucherDetailsModal visible={showModal} onCancel={cancelHandler}/>
     </div>
-
+    </div>
   );
 };
 
