@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
 const Calender = (props) => {
-  const { setCalenderDate, setShowCalenderMessage } = props;
+  const { calenderDate, setCalenderDate, setShowCalenderMessage } = props;
 
   return (
     <div>

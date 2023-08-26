@@ -2,43 +2,89 @@ import React, { useContext, useState } from "react";
 import { VoucherContext } from "./UserContext";
 import { Button, Card, Col, Dropdown, DropdownButton } from "react-bootstrap";
 import LoginFirstModal from "./LoginFirstModal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Calender from "./Calender";
 import validator from "validator";
 
 
 const SelectVoucherPage = () => {
-  const [
-    { selectedVoucher },
-    { selectedPrice, setSelectedPrice },
-    { selectedImage, setSelectedImage },
-  ] = useContext(VoucherContext);
 
-  const savedVoucher = JSON.parse(localStorage.getItem("selected-voucher")).selectedVoucher;
- /*  const savedCartItem = JSON.parse(localStorage.getItem("cart-item")).cartItem */
-
-  const [quantity, setQuantity] = useState(1);
+  const convertDate = (iso) => {
+    const monthsArr = [
+      "Jan",
+      "Feb",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const convertedDate = new Date(iso);
+    return `${
+      monthsArr[convertedDate.getMonth()]
+    } ${convertedDate.getDate()}, ${convertedDate.getFullYear()}`;
+  };
 
   const navigate = useNavigate();
-
-
-  const [recipientEmail, setRecipientEmail] = useState("");
-  const [recipientFullName, setRecipientFullName] = useState("");
-  const [recipientMessage, setRecipientMessage] = useState("");
+  const {category,name,id} = useParams()
   const currentDate = new Date()
+
+  let savedVoucher = JSON.parse(localStorage.getItem("selected-voucher")).selectedVoucher;
+
+
+  let savedCartItem = JSON.parse(localStorage.getItem("cart-item")).cartItem;
+
+
+  const [quantity, setQuantity] = useState(()=>{
+    if (id && savedCartItem.quantity !== 1) return savedCartItem.quantity
+    else return 1
+  });
+  const [selectedPrice, setSelectedPrice] = useState(()=>{
+    if (id) return savedCartItem.price
+    else return null
+  });
+  const [priceFocus, setPriceFocus] = useState("none");
+  const [image,setImage] = useState(()=>{
+    if (id) return savedCartItem.card
+    else return ""
+  })
+  const [recipientEmail, setRecipientEmail] = useState(()=>{
+    if (id) return savedCartItem.recipientEmail
+    else return ""
+  });
+  const [recipientFullName, setRecipientFullName] = useState(()=>{
+    if (id) return savedCartItem.recipientFullName
+    else return ""
+  });
+  const [recipientMessage, setRecipientMessage] = useState(()=>{
+    if (id) return savedCartItem.recipientMessage
+    else return ""
+  });
   const [date,setDate] = useState(currentDate.toISOString())
-  const [calenderDate,setCalenderDate] = useState("")
-  const [instantDelivery,setInstantDelivery] = useState(true)
-  const [futureDelivery,setFutureDelivery] = useState(false)
+  const [calenderDate,setCalenderDate] = useState(()=>{
+    if (id && currentDate.toISOString().slice(0,10) !== savedCartItem.deliveryDate.slice(0,10)) {
+      return savedCartItem.deliveryDate
+    }
+    else return ""
+  })
+  const [instantDelivery,setInstantDelivery] = useState(()=>{
+    if (!id || currentDate.toISOString().slice(0,10) === savedCartItem.deliveryDate.slice(0,10)) return true
+    else return false
+  })
+  const [futureDelivery,setFutureDelivery] = useState(()=>{
+    if (id && currentDate.toISOString().slice(0,10) !== savedCartItem.deliveryDate.slice(0,10)) return true
+    else return false
+  })
   const [showEmailMessage, setShowEmailMessage] = useState(false);
   const [showNameMessage, setShowNameMessage] = useState(false);
   const [showPriceMessage, setShowPriceMessage] = useState(false);
   const [showCalenderMessage, setShowCalenderMessage] = useState(false);
 
-    /* console.log(instantDelivery,date, futureDelivery, calenderDate);   */
-
-  /*  const [showModal, setShowModal] = useState(false) */
- 
 
   const nameToUpperCase = (item) => {
     return item.split(" ").map((el) => {
@@ -46,22 +92,31 @@ const SelectVoucherPage = () => {
     });
   };
 
+
+   let cardWithPricePath = ""
+      if (id && selectedPrice === savedCartItem.price) {
+       cardWithPricePath = savedCartItem.card
+      }  
+      else if (selectedPrice) {
+       
+          cardWithPricePath = savedVoucher.price.filter((obj)=>obj.cardPrice === selectedPrice)[0].cardWithPrice
+      }
+       
+
+ /*  let   imagePath =
+  "./images/" +
+  nameToUpperCase(savedVoucher.name).join("_") +
+  "_";  */
+
   const priceHandler = (e) => {
     setSelectedPrice(parseInt(e.target.value.split(" ")[0]));
+   /*  cardWithPricePath = savedVoucher.price.filter((obj)=>obj.cardPrice === selectedPrice)[0].cardWithPrice; */
     setShowPriceMessage(false)
   };
 
-  const imagePath =
-    "./images/" +
-    nameToUpperCase(savedVoucher.name).join("_") +
-    "_" +
-    selectedPrice +
-    ".png";
-  setSelectedImage(imagePath);
+  /* console.log(selectedPrice, imagePath+selectedPrice+".png");   */
 
-  /*   const buyForSelfHandler = () => {
-    setShowModal(true)
-  } */
+  
 
   const handleDecrement = () => {
     quantity > 1
@@ -75,27 +130,23 @@ const SelectVoucherPage = () => {
     setQuantity(quantity)
   };
 
-  /* const cancelHandler = ()=>{
-    setShowModal(false)
-    navigate("/login")
-    } */
-
   const quantityHandler = (e) => {
-    const value = parseInt(e.target.value);
-    if (value > 0 && value <=10) setQuantity(value);
+      const value = parseInt(e.target.value);
+      if (value > 0 && value <=10) setQuantity(value);
   };
 
+
   const handleInstantCheck = (e)=>{
-if (e.target.checked) {
+ if (e.target.checked) {
     setInstantDelivery(e.target.checked);
     setDate(currentDate.toISOString())
     setFutureDelivery(false)
     setCalenderDate("")
 } else {
-    setInstantDelivery(e.target.checked);
-    setDate("")
-    setFutureDelivery(true)
-    setCalenderDate(calenderDate)
+  setInstantDelivery(false);
+  setDate("")
+  setFutureDelivery(true)
+  setCalenderDate(calenderDate)
 }
   }
 
@@ -112,43 +163,54 @@ if (e.target.checked) {
         setCalenderDate("")
     }
       }
-
+     
   const submitHandler = ()=> {
     const cartItem = {
-        _id: savedVoucher._id,
-        name: savedVoucher.name,
-        category: savedVoucher.category,
-        card: selectedPrice ? selectedImage : savedVoucher.card,
-        location: savedVoucher.location,
-        description: savedVoucher.description,
+        _id: id? savedCartItem._id : savedVoucher._id,
+        name: id? savedCartItem.name : savedVoucher.name,
+        category: id? savedCartItem.category : savedVoucher.category,
+        card: cardWithPricePath? cardWithPricePath : savedVoucher.card,
+        location: id? savedCartItem.location : savedVoucher.location,
+        description: id? savedCartItem.description : savedVoucher.description,
         price: selectedPrice,
         quantity:quantity,
         recipientEmail: recipientEmail,
         recipientFullName: recipientFullName,
         recipientMessage: recipientMessage,
-        deliveryDate: (calenderDate && !date) ? calenderDate : date
+        deliveryDate: (calenderDate && !date) ? calenderDate : date,
+        greetingCard: id? savedCartItem.greetingCard : ""
     };
 
+    localStorage.setItem("cart-item", JSON.stringify({ cartItem }));
 
  if (!selectedPrice) return setShowPriceMessage(true)
  if (!validator.isEmail(recipientEmail)) return setShowEmailMessage(true)
  if (!recipientFullName) return setShowNameMessage(true)
  if (!calenderDate && !date) return setShowCalenderMessage(true)
 
+ let cartList = [];
+ if (localStorage.getItem("cart-list")) {
+   cartList = JSON.parse(localStorage.getItem("cart-list"));
+   if (id) {
+     const indexItem = cartList.findIndex(obj => obj._id === id)
+     cartList[indexItem] = cartItem
+     localStorage.setItem("cart-list", JSON.stringify(cartList));
+   return navigate("/shopping-cart")
+   }
+ }
 
- localStorage.setItem("cart-item", JSON.stringify({ cartItem }));
-navigate("/select-voucher/greeting-card")
+
+navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
   }
-
 
   return (
     <>
       <div style={{ margin: "20px auto" }}>
         <Col style={{ border: "none" }}>
-          <h2>{nameToUpperCase(savedVoucher.name).join(" ")}</h2>
+          <h2>{nameToUpperCase(id? savedCartItem.name : savedVoucher.name).join(" ")}</h2>
           <Card style={{ border: "none" }}>
             <Card.Img
-              src={selectedPrice ? selectedImage : savedVoucher.card}
+              src={cardWithPricePath? cardWithPricePath : savedVoucher.card}
               style={{ maxWidth: "100%", height: "auto" }}
             />
             <Card.Body
@@ -162,7 +224,7 @@ navigate("/select-voucher/greeting-card")
             >
               <div>
                 <h3 style={{ margin: "20px 0" }}>
-                  Selected Price: {selectedPrice ? selectedPrice + " €" : ""}
+                  Selected Price: {selectedPrice? selectedPrice + " €" : ""}
                 </h3>
                 <div
                   style={{
@@ -172,12 +234,12 @@ navigate("/select-voucher/greeting-card")
                     background: "#ffffff5a",
                   }}
                 >
-                  {savedVoucher.price.map((el, index) => (
+                  {savedVoucher.price.map(obj=>obj.cardPrice).map((el,index) => (
                     <Button
                       key={index}
                       value={el + " €"}
                       style={{
-                        background: "none",
+                        background: `${priceFocus}`,
                         color: "black",
                         border: "1px solid black",
                       }}
@@ -262,9 +324,10 @@ navigate("/select-voucher/greeting-card")
                   required
                   onChange={handleFutureCheck} />
                   <label htmlFor="futureDelivery" style={{marginLeft:"10px"}}>Send on a future date</label>
-                  {futureDelivery && <Calender setCalenderDate = {setCalenderDate} setShowCalenderMessage= {setShowCalenderMessage}/>}
+                  {futureDelivery && <Calender calenderDate={calenderDate} setCalenderDate = {setCalenderDate} setShowCalenderMessage= {setShowCalenderMessage}/>}
              </div>
              {showCalenderMessage && <p style={{color:"red", marginTop:"20px"}}>Select a date!</p>}  
+              {(calenderDate || date) && <p style={{color:"darkgreen", marginTop:"20px"}}>Selected delivery date is: <strong>{calenderDate? convertDate(calenderDate) : convertDate(date)}</strong></p>}
               </div>
              
             </Card.Body>
@@ -287,13 +350,12 @@ navigate("/select-voucher/greeting-card")
                 }}
                 onClick={submitHandler}
               >
-                Next Step
+                {id? <strong>Proceed to Cart</strong> : <strong>Next Step</strong>}
               </Button>
             </div>
           </Card>
         </Col>
       </div>
-      {/*  <LoginFirstModal visible={showModal} onCancel={cancelHandler}/> */}
     </>
   );
 };

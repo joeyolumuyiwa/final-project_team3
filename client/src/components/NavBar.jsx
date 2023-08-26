@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import {UserContext} from "./UserContext";
+import { UserContext } from "./UserContext";
 import "./Navbar.css";
 
 const NavBar = () => {
@@ -14,6 +14,11 @@ const NavBar = () => {
     { click, setClick },
   ] = useContext(UserContext);
 
+  let showCount
+
+  JSON.parse(localStorage.getItem("cart-list")).length > 0 ?
+showCount = "block" : showCount = "none"
+
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -21,7 +26,7 @@ const NavBar = () => {
     <>
       <header className="navbar">
         <div className="container">
-        <NavLink to="/home" className="navbar-logo" onClick={closeMobileMenu}>
+          <NavLink to="/home" className="navbar-logo" onClick={closeMobileMenu}>
             <img src="/logo-gift.png" alt="" />
           </NavLink>
           {authenticated && (
@@ -47,7 +52,13 @@ const NavBar = () => {
               <h3>Welcome {name.split(" ")[0]}</h3>
             </div>
           )}
-        
+
+          <NavLink to="/shopping-cart">
+          <div  className="fa-solid fa-cart-shopping shoppingbasket"> 
+  <div className="basketitems" style={{display:`${showCount}`}}>{JSON.parse(localStorage.getItem("cart-list")).length}</div>
+</div>
+          </NavLink>
+
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>

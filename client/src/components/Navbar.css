@@ -174,3 +174,29 @@
   
 }
 
+
+/* styling the shopping cart */
+
+.shoppingbasket {
+  width:40px;
+  height:40px;
+  background-color: none;
+  position:absolute;
+  top:20px;
+  right:13%;
+  font-size: 40px;
+  color: #323948;
+}
+.basketitems {
+  color:#fff;
+  font-size:50%;
+  background-color:#992925;
+  position:absolute;
+  top:40%;
+  left:110%;
+  -webkit-transform:translate(-50%,-90%);
+  -moz-transform:translate(-50%,-90%);
+  transform:translate(-50%,-90%);
+  padding: 10% 20%;
+  border-radius:1000px;
+}
