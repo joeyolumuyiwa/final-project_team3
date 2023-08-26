@@ -130,8 +130,10 @@ function App() {
             <Route path="/voucher/search" element={<VoucherSearch />} />
             <Route path="home/voucher/:category" element={<CategoryPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/select-voucher" element={<SelectVoucherPage />} />
-            <Route path="/select-voucher/greeting-card" element={<GreetingCard />} />
+            <Route path="/:category/:name" element={<SelectVoucherPage />} />
+            <Route path="/:category/:name/:id" element={<SelectVoucherPage />} />
+            <Route path="/:category/:name/egreeting-card" element={<GreetingCard />} />
+            <Route path="/:category/:name/egreeting-card/:id" element={<GreetingCard />} />
             <Route path="/shopping-cart" element={<Cart />} />   
           </Routes>
         </div>

@@ -16,7 +16,7 @@ const VoucherDetailsModal = (props) => {
 
   const navigateHandler = () => {
     localStorage.setItem("selected-voucher", JSON.stringify({ selectedVoucher }));
-navigate("/select-voucher")
+navigate(`/${selectedVoucher.category}/${selectedVoucher.name}`)
   }
 
   return (
@@ -50,7 +50,7 @@ navigate("/select-voucher")
           <Row>
             <p>
               The available prices for that voucher:{" "}
-              <strong>{selectedVoucher?.price.join(", ")+" €"}</strong>
+              <strong>{selectedVoucher?.price.map(obj=>obj.cardPrice).join(", ")+" €"}</strong>
             </p>
           </Row>
         </Container>

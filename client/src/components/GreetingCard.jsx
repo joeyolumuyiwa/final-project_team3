@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Button, Card, Modal, Image } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const GreetingCard = () => {
   const navigate = useNavigate();
+  const {category,name,id} = useParams()
+  /* console.log(category,name,id); */
 
   const [imagePath, setImagePath] = useState("");
   const [displayDiv, setDisplayDiv] = useState("none");
@@ -55,6 +57,12 @@ const GreetingCard = () => {
     let cartList = [];
     if (localStorage.getItem("cart-list")) {
       cartList = JSON.parse(localStorage.getItem("cart-list"));
+      if (id) {
+        const indexItem = cartList.findIndex(obj => obj._id === id)
+        cartList[indexItem].greetingCard = imagePath
+        localStorage.setItem("cart-list", JSON.stringify(cartList));
+      return navigate("/shopping-cart")
+      }
     }
     cartList.push(cartItem);
     localStorage.setItem("cart-list", JSON.stringify(cartList));
@@ -114,7 +122,7 @@ const GreetingCard = () => {
         }}
         onClick={submitHandler}
       >
-        Next Step
+        {id? <strong>Proceed to Cart</strong> : <strong>Next Step</strong>}
       </Button>
     </>
   );

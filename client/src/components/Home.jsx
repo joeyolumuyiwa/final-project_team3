@@ -13,14 +13,14 @@ import { Card } from "./Card";
 /* style={{border:"2px solid red"}} */
 
 const categoryList = [
-  { name: "restaurants", image: "./images/food.png" },
+  { name: "food", image: "./images/food.png" },
   { name: "beauty", image: "./images/beauty.png" },
   { name: "sport", image: "./images/sport.png" },
   { name: "games", image: "./images/games.png" },
-  { name: "fashion", image: "./images/style.png" },
+  { name: "style", image: "./images/style.png" },
   { name: "hobby", image: "./images/hobby.png" },
-  { name: "flower shop", image: "./images/garden.png" },
-  { name: "cinema", image: "./images/cinemas.png" }
+  { name: "garden", image: "./images/garden.png" },
+  { name: "cinemas", image: "./images/cinemas.png" }
 ];
 const Home = () => {
  

@@ -71,7 +71,7 @@ else if (!category && !location) {
   /* console.log("voucherCards", vouchers); */
   return (
     <div className="vou-button">
-      <div style={{marginBottom:"20px", display:"flex", justifyContent:"space-around"}}>
+     {/*  <div style={{marginBottom:"20px", display:"flex", justifyContent:"space-around"}}>
       <Dropdown
        onSelect={handleSelectCategory}
       >
@@ -98,7 +98,7 @@ else if (!category && !location) {
         ))}
       </Dropdown.Menu>
     </Dropdown>
-      </div>
+      </div> */}
     <div className="g-4">
       {vouchers.map((item, index) => (
         <Col key={index}>

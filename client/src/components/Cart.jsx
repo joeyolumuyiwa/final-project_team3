@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
+import LoginFirstModal from "./LoginFirstModal";
 
 const Cart = () => {
   let cartList = JSON.parse(localStorage.getItem("cart-list"));
   const navigate = useNavigate();
   const location = useLocation().pathname;
+
+    const [showModal, setShowModal] = useState(false)
 
   const totalPrice = cartList.reduce((acc,el,index)=>{
     return acc + el.price*el.quantity
@@ -33,11 +36,29 @@ const Cart = () => {
       "Dec",
     ];
     const convertedDate = new Date(iso);
-    /*  const dateArr = convertedDate.split(" ") `${dateArr[1]} ${dateArr[2]}, ${dateArr[3]}` */
     return `${
       monthsArr[convertedDate.getMonth()]
     } ${convertedDate.getDate()}, ${convertedDate.getFullYear()}`;
   };
+
+   const cancelHandler = ()=>{
+    setShowModal(false)
+    navigate("/login")
+    }
+
+  const loginCheckHandler = () => {
+    if (JSON.parse(localStorage.getItem("my-profile")) || JSON.parse(localStorage.getItem("my-app-token"))) {
+        navigate("/payment-customization")
+      } else {setShowModal(true)}
+  }
+
+  const editECardHandler = (item) => {
+    navigate(`/${item.category}/${item.name}/egreeting-card/${item._id}`)
+  }
+
+   const editVoucherHandler = (item) => {
+    navigate(`/${item.category}/${item.name}/${item._id}`)
+  } 
 
   return (
     <div style={{ width: "90%", margin: "20px auto"}}>
@@ -111,10 +132,11 @@ const Cart = () => {
                       color: "purple",
                       fontWeight: "bold",
                       fontSize: "18px",
-                      textDecoration: "underline",
+                      textDecoration: "underline"
                     }}
+                     onClick = {()=>editVoucherHandler(item)} 
                   >
-                    Edit card details
+                    Edit voucher details
                   </button>
                 </div>
                 <div
@@ -146,6 +168,7 @@ const Cart = () => {
                       textDecoration: "underline",
                       margin: "20px 0",
                     }}
+                    onClick = {()=>editECardHandler(item)}
                   >
                     Edit eGreeting Card
                   </button>
@@ -172,6 +195,15 @@ const Cart = () => {
                     Message: <strong>{item.recipientMessage}</strong>
                   </p>
                 ) : null}
+                 <p
+                  style={{
+                    color: "	#777777",
+                    textAlign: "start",
+                    margin: "0 0 10px 20px",
+                  }}
+                >
+                  The voucher is available in: <strong>{item.location.join(", ")}</strong>
+                </p>
               </div>
               <div
                 style={{
@@ -200,9 +232,9 @@ const Cart = () => {
                       <td>Voucher value</td>
                       <td>{item.price} €</td>
                     </tr>
-                    <tr>
+                    <tr style={{borderBottom:"1px solid lightgrey"}}>
                       <td>Voucher quantity</td>
-                      <td>{item.quantity} €</td>
+                      <td>{item.quantity}</td>
                     </tr>
                   </tbody>
                   <tfoot>
@@ -252,14 +284,13 @@ const Cart = () => {
                     <td>Shipping & handling</td>
                     <td>0 €</td>
                   </tr>
-                  <tr>
+                  <tr style={{borderBottom:"1px solid lightgrey"}}>
                     <td>Promo discount</td>
                     <td>0 €</td>
                   </tr>
-                  <hr />
                 </tbody>
                 <tfoot>
-                  <tr>
+                  <tr >
                     <th>Total price</th>
                     <th>{totalPrice} €</th>
                   </tr>
@@ -283,9 +314,9 @@ const Cart = () => {
                   borderRadius: "50px",
                   margin: "0 auto 20px",
                 }}
-                /* onClick={submitHandler} */
+                onClick={loginCheckHandler}
               >
-                Proceed to login or register
+                Proceed to checkout
               </Button>
               <Button
                 variant="primary"
@@ -296,7 +327,7 @@ const Cart = () => {
                   margin: "0 auto",
                   borderRadius: "50px",
                 }}
-                /* onClick={submitHandler} */
+                onClick={()=>navigate("/home")}
               >
                 Continue shopping
               </Button>
@@ -305,8 +336,10 @@ const Cart = () => {
         </Col>
      </div>
       </div>
+       <LoginFirstModal visible={showModal} onCancel={cancelHandler}/>
     </div>
   );
 };
 
 export default Cart;
+
