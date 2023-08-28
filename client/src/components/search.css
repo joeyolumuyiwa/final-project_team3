@@ -1,17 +1,17 @@
 
 
-
 .search-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 95%;
-    height: fit-content;
+    width: 90%;
+    height: 50%;
     padding: 50px;
-    background:  linear-gradient(130deg, #8cc0dee3 35%,#fedea8a3 35%, #ff9b9b92  55%,#8cc0deee   45%);
+    background:  linear-gradient(124deg, #8cc0dee3 35%,#fedea8a3 35%, #ff9b9b92  54%,#8cc0deee   45%);
     border-radius: 25px;
-    margin-top: 5px;
+    margin-top: 10px;
+    border: #fedea8 5px solid;
     
  }
  

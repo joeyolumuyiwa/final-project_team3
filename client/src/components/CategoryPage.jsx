@@ -38,19 +38,23 @@ const cancelHandler = ()=>{
   },[])
 
   return (
-    <div style={{width:"90%", margin:"20px auto"}}>
+    <div style={{width:"90%", margin:"20px auto",backgroundColor:"#8cc0de8b",
+        border:"3px solid  #fedea8 ",
+        borderRadius:"25px",
+        
+        }}>
        <div className="g-4" style={{borderRadius:"25px"}}>
       {vouchers.map((item, index) => (
-        <Col key={index}>
-          <Card style={{ border: "1px solid lightgrey" }} onClick={()=>showVoucherDetailsHandler(item)}>
-            <Card.Img
+        <Col style={{ }} key={index}>
+          <Card  onClick={()=>showVoucherDetailsHandler(item)}>
+            <Card.Img className="voucher-img"
               variant="top"
               src={item.card}
               style={{ maxWidth: "100%", height: "auto" }}
             />
-            <Card.Body style={{ border: "1px solid lightgrey" }}>
+            <Card.Body  className="card-body">
               <Card.Title>{item.name}</Card.Title>
-              <Card.Text>{item.category}</Card.Text>
+              <Card.Text className="text-cat">{item.category}</Card.Text>
              {/*  <Button variant="primary">Select Me</Button> */}
             </Card.Body>
           </Card>

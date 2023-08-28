@@ -76,7 +76,7 @@ function ChangePassword() {
                 placeholder="*********"
                 required
               />
-              <button type="submit">Reset Password</button>
+              <button className="cancel-btn" type="submit">Reset Password</button>
             </form>
             {errorMessage && (
               <p style={{ color: "red" }}>

@@ -23,6 +23,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import SelectVoucherPage from "./components/SelectVoucherPage";
 import GreetingCard from "./components/GreetingCard";
 import Cart from "./components/Cart";
+import BottomNav from "./components/BottomNav";
 
 function App() {
   const location = useLocation();
@@ -136,10 +137,11 @@ function App() {
             <Route path="/:category/:name/egreeting-card/:id" element={<GreetingCard />} />
             <Route path="/shopping-cart" element={<Cart />} />   
           </Routes>
-        </div>
+        </div> <BottomNav/>
         {location.pathname !== "/" && <Footer />}
       </VoucherContext.Provider>
     </UserContext.Provider>
+   
   );
 }
 

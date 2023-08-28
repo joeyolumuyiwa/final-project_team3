@@ -1,0 +1,155 @@
+.voucher-cont {
+    padding-top: 15px;
+    background: #8cc0de ;
+    color: white;
+    border-radius: 20px;
+    border: 3px solid  #fedea8 ;
+   
+   
+
+}
+
+.voucher-cont h2 {
+color: #fedea8fa;
+font-weight: bold;
+font-size: 35px;
+
+}
+
+.voucher-cont .select-img {
+    padding: 5px;
+    border: #ff9b9b 2px solid;
+    border-radius: 80px;
+    margin-top: 2px;
+    
+   
+}
+
+
+
+.selectPrice {
+    background: #8cc0de ; 
+    border: 3px solid  #fedea8 ;
+    border-radius: 20px;
+    color: white;
+    height: fit-content;
+    padding: 10px;
+}
+
+.selectPrice .price-button {
+    background-color: #fedea8;
+   
+    border-radius: 15px;
+    box-shadow: #ff9b9b 4px 2px;
+}
+
+.selectPrice .price-button:hover {
+    transform: scale(1.4);
+    background-color: #ff9b9b;
+    
+}
+.price-cho{
+    color: black;
+    background-color: #fedea8;
+    border-radius: 15px;
+    box-shadow: #ff9b9b 4px 4px;
+  
+}
+
+.price-cho p{
+    color: #fb3333;
+    
+}
+.quantity {
+        background: #8cc0de ; 
+        border: 3px solid  #fedea8 ;
+        border-radius: 20px;
+        color: white;
+        height: fit-content;
+        padding: 10px;
+    
+}
+
+.quantity input {
+text-align: center;
+background-color: #fedea8;
+    border-radius: 15px;box-shadow: #ff9b9b 4px 4px;
+    width: 50%;
+
+
+}
+
+.quantity .button {
+    background-color: #8cc0de;
+    border-radius: 500%;
+    color: white;
+    border: #fedea8 2px solid;
+    box-shadow: #ff9b9b 2px 2px;
+}
+
+.form-recipient {
+    background: #8cc0de ; 
+        border: 3px solid  #fedea8 ;
+        border-radius: 20px;
+        color: white;
+        height: fit-content;
+        padding: 10px;
+
+}
+
+.form-recipient input {
+    
+background-color: #fedea8fa;
+    border-radius: 15px;box-shadow: #ff9b9b 4px 4px;
+}
+
+.form-recipient textarea {
+    
+background-color: #fedea8fa;
+    border-radius: 15px;box-shadow: #ff9b9b 4px 4px;
+}
+
+.form-recipient label {
+    font-family: 'Lucida Sans' ;
+
+ font-weight: bold;
+ padding: 15px;
+ font-size: 20px;
+}
+
+.delivery {  background: #8cc0de ; 
+    border: 3px solid  #fedea8 ;
+    border-radius: 20px;
+    color: white;
+    height: fit-content;
+    padding: 10px;
+    
+
+}
+.delivery label {
+   
+}
+
+.delivery h3 {
+    font-size: 30px;
+}
+
+.delivery input  {
+    background-color: #fedea8fa;
+    border-radius: 15px;
+    box-shadow: #ff9b9b 2px 2px;
+    font-family: 'Lucida Sans' ;
+    font-weight: bold;
+    
+}
+
+.delivery .calendar {
+   color: #fedea8;
+}
+
+
+.next-button:hover { 
+    transform: scale(1.2);
+   color: #ff9b9b ;
+
+}

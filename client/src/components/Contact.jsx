@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import "./contact.css"
 /* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"; */
@@ -14,7 +15,7 @@ const Contact = () => {
 
    return (<>
 
-      <div>
+      <div className="contacts">
       <h2 className="contact-cont">Contact</h2>
             <hr />
             <h3 className="email-cont">E-MAIL</h3>
@@ -50,7 +51,7 @@ const Contact = () => {
                         style={{height:"100%", width:"100%",maxWidth:"100%"}}
                       >
                         <iframe
-                          style={{height:"100%",width:"100%",border:"0"}}
+                          style={{height:"70%",width:"70%",border:"none"}}
                           frameborder="0"
                           src="https://www.google.com/maps/embed/v1/place?q=new+york&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
                         ></iframe>
@@ -75,7 +76,7 @@ const Contact = () => {
                               <div className="mb-3 mt-3">
                                   <textarea className="form-control" rows="5" id="comment" name="text" placeholder="Project Details" />
                               </div>
-                    <button type="button" className="btn btn-success mt-3">
+                    <button type="button" className="m-btn">
                       Contact Me
                     </button>
                     </form>

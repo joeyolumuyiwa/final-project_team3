@@ -2,17 +2,24 @@
   background: linear-gradient(30deg,#8cc0de 45%, #fedea8 43%,#ff9b9b 70%,#8cc0de 8%);
   height: 100px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+ 
   font-size: 1.2rem;
   position: fixed;
   width: auto;
+  top: 0;
+  
+
+   align-items: center;
 
   
   
   
   
 }
+
+
 
 .navbar-logo img {
   border-radius: 50%;
@@ -24,18 +31,21 @@
   font-size: 2rem;
   font-weight: bolder;
   align-items: flex-start;
-  width: 100px;
-  height: 100px;
-  margin-top: -35px;
+  width: 140px;
+  height: 140px;
+  translate: -20px -90px ;
   margin-left: -20px;
+  
   
 }
 
-.welcome {
- width: 15px;
+h3 {
+ 
   font-family: 'Lucida Sans' ;
   font-style: italic;
   font-weight: bold;
+  
+ 
   
 
 }
@@ -65,7 +75,7 @@
 }
 
 .nav-links {
-  color: white;
+  color: rgb(86, 86, 86);
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
@@ -88,7 +98,6 @@
   display: none;
 }
 
-@media screen and (max-width: 960px) {
   .NavbarItems {
     position: relative;
   }
@@ -107,7 +116,7 @@
   }
 
   .nav-menu.active {
-    background: linear-gradient(-70deg, #8cc0de 47%, #fedea8 69%,#ff9b9b 9%,#8cc0de 27%);
+    background: linear-gradient(-70deg, #8cc0de 50%, #fedea8 69%,#ff9b9b 9%,#8cc0de 27%);
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
@@ -172,7 +181,8 @@
   }
 
   
-}
+
+
 
 
 /* styling the shopping cart */
