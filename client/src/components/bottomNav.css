@@ -1,0 +1,88 @@
+
+  .icon1 {
+    height: 60px;
+    width: 50%;
+    border: #fedea8 1px  solid;
+    background-color: #8cc0de;
+    border-radius: 0px 150px 0px 0px;
+    display: flex ;
+    align-items: center;
+    justify-content: space-around;
+    background: linear-gradient(-70deg, #8cc0de 50%, #fedea8 60%,#ff9b9b 82%,#8cc0de 27%);
+  }
+
+  .icon1 i {
+    color: #6c6c6c;
+    font-size: 20px;
+  }
+
+  .icon1 i:hover {
+    transform: scale(2);
+    cursor: pointer;
+    background-color: #fb7b78;
+    border-radius: 500%;
+  }
+  .icon2 i {
+    color: #6c6c6c;
+    font-size: 20px;
+  }
+  .icon2 i:hover {
+    transform: scale(2);
+    cursor: pointer;
+    background-color: #fb7b78;
+    border-radius: 50%;
+  }
+  .icon2 {
+    height: 60px;
+    width: 50%;
+    display: flex ;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 150px 0px 0px 0px;
+    background-color: #8cc0de;
+    border: #fedea8 1px  solid;
+        background: linear-gradient(70deg, #8cc0de 50%, #fedea8 60%,#ff9b9b 82%,#8cc0de 27%);
+  }
+
+  .bottom-bar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: auto;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    
+  }
+
+.b-logo img {
+    width: 100px;
+    translate: 0px -15px 0px;
+    object-fit: cover;
+    
+    
+   
+   
+    
+  
+}
+
+.b-logo {
+   width: 100px;
+border-radius: 50px 50px;
+    background-color:#8cc0de  ;
+    display: flex;
+    justify-content: center;
+    border: #fb7b78 2px solid;
+ 
+   
+  
+   
+  
+ 
+    
+}
+
+.b-logo:hover {
+    transform: scale(1.2);
+}

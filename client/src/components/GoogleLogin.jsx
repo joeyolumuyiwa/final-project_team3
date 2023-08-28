@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const Login1 = () => {
 
   const styleGoogleBtn = {
-    background: "white",
+    background: "  #fedea8fa",
     border: "2px solid tomato",
     borderRadius: "20px",
     color: "#3a4c5a",

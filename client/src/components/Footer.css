@@ -9,6 +9,9 @@ footer {
     margin-top: 20px;
     width: 100%;
    text-align: center;
+   position: sticky;
+   bottom: 0;
+   
   }
    .design {
     text-align: center;

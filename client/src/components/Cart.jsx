@@ -61,24 +61,32 @@ const Cart = () => {
   } 
 
   return (
-    <div style={{ width: "90%", margin: "20px auto"}}>
-      <h2>My Cart</h2>
+    <div style={{ width: "90%", margin: "20px auto", }} className="cart">
+      <h2 
+style={{color:"#fedea8fa",
+fontWeight: "bold",
+fontSize: "35px",
+ backgroundColor:"#8cc0de", border:"3px solid  #fedea8 ",
+ borderRadius: "15px",
+ boxShadow: "#ff9b9b 4px 2px",}}>My Cart</h2>
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           flexWrap: "wrap",
           justifyContent:"space-around",
           margin: "20px 0",
-          width:"100%"
+          width:"100%",
+          
         }}
       >
-        <div style={{width:"65%"}}>
+        <div style={{width:"100%"}}>
         <Col
           style={{
             display: "flex",
             flexDirection: "column",
-            marginRight: "20px"
+            
+
           }}
         >
           {cartList.map((item, index) => (
@@ -88,6 +96,12 @@ const Cart = () => {
                 display: "flex",
                 flexDirection: "column",
                 marginBottom: "20px",
+                backgroundColor:"#8cc0de8b",
+                border:"3px solid  #fedea8 ",
+                borderRadius:"25px",
+                boxShadow: "#ff9b9b 4px 2px",
+                
+
               }}
             >
               <div
@@ -96,6 +110,7 @@ const Cart = () => {
                   flexDirection: "row",
                   flexWrap: "wrap",
                   marginBottom: "20px",
+                  justifyContent: "center",
                 }}
               >
                 <div
@@ -105,34 +120,40 @@ const Cart = () => {
                     flexDirection: "column",
                   }}
                 >
-                  <h4>{item.name}</h4>
+               
+                  <h4 style={{color:"black",
+                    fontWeight: "bold",
+                     fontSize: "22px",
+                    fontStyle:"italic",}}>{item.name}</h4>
                   <img
                     src={item.card}
-                    style={{ maxWidth: "200px", height: "auto" }}
+                    style={{ maxWidth: "160px", height: "auto",border: "#f49b8c 4px solid", }}
                     alt=""
                   />
-                  <button
+                  <button className=""
                     style={{
-                      border: "none",
-                      background: "none",
-                      color: "purple",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textDecoration: "underline",
-                      margin: "20px 0",
+                      backgroundColor: "#fedea8",
+                      borderRadius: "15px",
+                      boxShadow: "#ff9b9b 4px 2px",
+                      marginTop:"15px",
+                      width:"160px",
+                      fontWeight:"bold",
+                      border:"#ff9b9b 2px solid"
                     }}
                     onClick={() => handleRemove(item)}
                   >
                     Remove
                   </button>
                   <button
-                    style={{
-                      border: "none",
-                      background: "none",
-                      color: "purple",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textDecoration: "underline"
+                    
+                      style={{
+                        backgroundColor: "#fedea8",
+                        borderRadius: "15px",
+                        boxShadow: "#ff9b9b 4px 2px",
+                        marginTop:"15px",
+                        width:"160px",
+                        fontWeight:"bold",
+                        border:"#ff9b9b 2px solid"
                     }}
                      onClick = {()=>editVoucherHandler(item)} 
                   >
@@ -146,11 +167,16 @@ const Cart = () => {
                     flexDirection: "column",
                   }}
                 >
-                  <h4>eGreeting Card</h4>
+                  <h4 style={{color:"black",
+fontWeight: "bold",
+fontSize: "22px",
+ fontStyle:"italic",
+
+ }}>eGreeting Card</h4>
                   {item.greetingCard ? (
                     <img
                       src={item.greetingCard}
-                      style={{ maxWidth: "150px", height: "auto" }}
+                      style={{ maxWidth: "160px", height: "auto",border: "#f49b8c 4px solid", }}
                       alt=""
                     />
                   ) : (
@@ -160,14 +186,14 @@ const Cart = () => {
                   )}
                   <button
                     style={{
-                      border: "none",
-                      background: "none",
-                      color: "purple",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textDecoration: "underline",
-                      margin: "20px 0",
-                    }}
+                      backgroundColor: "#fedea8",
+                      borderRadius: "15px",
+                      boxShadow: "#ff9b9b 4px 2px",
+                      marginTop:"15px",
+                      width:"160px",
+                      fontWeight:"bold",
+                      border:"#ff9b9b 2px solid"
+                  }}
                     onClick = {()=>editECardHandler(item)}
                   >
                     Edit eGreeting Card
@@ -177,17 +203,17 @@ const Cart = () => {
               <div>
                 <p
                   style={{
-                    color: "	#777777",
+                    color: "	black",
                     textAlign: "start",
                     margin: "0 0 10px 20px",
                   }}
                 >
-                  Recipient name: <strong>{item.recipientFullName}</strong>
+                  Recipient name: <strong style={{ fontStyle:"italic", color:"red",fontWeight:"bold",fontSize:"22px",}}>{item.recipientFullName}</strong>
                 </p>
                 {item.recipientMessage ? (
                   <p
                     style={{
-                      color: "#777777",
+                      color: "black",
                       textAlign: "start",
                       margin: "0 0 10px 20px",
                     }}
@@ -197,12 +223,12 @@ const Cart = () => {
                 ) : null}
                  <p
                   style={{
-                    color: "	#777777",
+                    color: "black",
                     textAlign: "start",
                     margin: "0 0 10px 20px",
                   }}
                 >
-                  The voucher is available in: <strong>{item.location.join(", ")}</strong>
+                  The voucher is available in: <strong style={{fontStyle:"italic",}}>{item.location.join(", ")}</strong>
                 </p>
               </div>
               <div
@@ -215,8 +241,8 @@ const Cart = () => {
                 }}
               >
                 Your voucher will be sent via email{" "}
-                <strong>{item.recipientEmail}</strong> on{" "}
-                <strong>{convertDate(item.deliveryDate)}</strong>
+                <strong style={{ fontStyle:"italic", color:"red",fontWeight:"bold",fontSize:"18px",}}>{item.recipientEmail}</strong> on{" "}
+                <strong style={{ fontStyle:"italic", color:"red",fontWeight:"bold",fontSize:"18px",}}>{convertDate(item.deliveryDate)}</strong>
               </div>
               <div
                 style={{
@@ -232,15 +258,22 @@ const Cart = () => {
                       <td>Voucher value</td>
                       <td>{item.price} €</td>
                     </tr>
-                    <tr style={{borderBottom:"1px solid lightgrey"}}>
+                    <tr style={{borderBottom:"1px solid #ff9b9b"}}>
                       <td>Voucher quantity</td>
                       <td>{item.quantity}</td>
                     </tr>
-                  </tbody>
+                    
+                  </tbody><br/>
                   <tfoot>
                     <tr>
                       <th>Voucher Total</th>
-                      <th>{item.price*item.quantity} €</th>
+                      <th style={{
+                      backgroundColor: "#fedea8",
+                      borderRadius: "500%",
+                      textAlign:"center",
+                      fontWeight:"bold",
+                      width:"50px",
+                  }}>{item.price*item.quantity} €</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -249,14 +282,20 @@ const Cart = () => {
           ))}
         </Col>
         </div>
-     <div style={{width:"30%"}}>
-     <Col style={{ display: "flex", flexDirection: "column" }}>
-          <Card>
+     <div style={{width:"100%", }}>
+     <Col style={{ display: "flex", flexDirection: "column" ,}}>
+          <Card style={{ backgroundColor:"#8cc0de",
+                border:"3px solid  #fedea8 ",
+                        borderRadius: "15px",
+                        boxShadow: "#ff9b9b 4px 2px",}}>
             <h3
               style={{
-                color: "#555555",
-                textAlign: "start",
+                
+                textAlign: "center",
                 margin: "20px 0 20px 20px",
+                fontWeight: "bold",
+                fontSize:"45px",
+                color:"#fedea8fa"
               }}
             >
               Order Summary
@@ -266,7 +305,6 @@ const Cart = () => {
               style={{
                 margin: "20px",
                 display: "flex",
-
                 flexDirection: "column",
               }}
             >
@@ -284,15 +322,23 @@ const Cart = () => {
                     <td>Shipping & handling</td>
                     <td>0 €</td>
                   </tr>
-                  <tr style={{borderBottom:"1px solid lightgrey"}}>
+                  <tr style={{borderBottom:"1px solid #ff9b9b "}}>
                     <td>Promo discount</td>
                     <td>0 €</td>
                   </tr>
                 </tbody>
+                
+                <br />
                 <tfoot>
                   <tr >
-                    <th>Total price</th>
-                    <th>{totalPrice} €</th>
+                    <th >Total price</th>
+                    <th style={{ fontSize:"20px",
+                      backgroundColor: "#fedea8",
+                      
+                      textAlign:"center",
+                      fontWeight:"bold",
+                      width:"60px",
+                      borderRadius: "500%",}}>{totalPrice} €</th>
                   </tr>
                 </tfoot>
               </table>
@@ -306,26 +352,34 @@ const Cart = () => {
               }}
             >
               <Button
-                variant="primary"
+                
                 style={{
-                  padding: "10px 10px",
-                  fontWeight: "bold",
-                  width: "80%",
-                  borderRadius: "50px",
-                  margin: "0 auto 20px",
+                  color:"black",
+                  backgroundColor: "#fedea8",
+                      borderRadius: "15px",
+                      boxShadow: "#ff9b9b 4px 2px",
+                      marginTop:"15px",
+                      width:"250px",
+                      fontWeight:"bold",
+                      border:"#ff9b9b 2px solid"
+                      
+                      
                 }}
                 onClick={loginCheckHandler}
               >
                 Proceed to checkout
               </Button>
-              <Button
+              <Button 
                 variant="primary"
                 style={{
-                  padding: "10px 10px",
-                  fontWeight: "bold",
-                  width: "80%",
-                  margin: "0 auto",
-                  borderRadius: "50px",
+                  color:"black",
+                  backgroundColor: "#fedea8",
+                      borderRadius: "15px",
+                      boxShadow: "#ff9b9b 4px 2px",
+                      marginTop:"15px",
+                      width:"250px",
+                      fontWeight:"bold",
+                      border:"#ff9b9b 2px solid"
                 }}
                 onClick={()=>navigate("/home")}
               >

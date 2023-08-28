@@ -5,6 +5,7 @@ import LoginFirstModal from "./LoginFirstModal";
 import { useNavigate, useParams } from "react-router-dom";
 import Calender from "./Calender";
 import validator from "validator";
+import "./SelectVoucherPage.css"
 
 
 const SelectVoucherPage = () => {
@@ -206,10 +207,11 @@ navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
   return (
     <>
       <div style={{ margin: "20px auto" }}>
+      <div className="voucher-cont">
         <Col style={{ border: "none" }}>
           <h2>{nameToUpperCase(id? savedCartItem.name : savedVoucher.name).join(" ")}</h2>
           <Card style={{ border: "none" }}>
-            <Card.Img
+            <Card.Img className="select-img"
               src={cardWithPricePath? cardWithPricePath : savedVoucher.card}
               style={{ maxWidth: "100%", height: "auto" }}
             />
@@ -222,9 +224,11 @@ navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
                 background: "#ffffff5a",
               }}
             >
-              <div>
+              <div className="selectPrice">
                 <h3 style={{ margin: "20px 0" }}>
-                  Selected Price: {selectedPrice? selectedPrice + " €" : ""}
+                <div className="price-cho" >
+                   Selected Price: <p> {selectedPrice? selectedPrice + " €" : ""}</p>
+                </div>
                 </h3>
                 <div
                   style={{
@@ -235,11 +239,11 @@ navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
                   }}
                 >
                   {savedVoucher.price.map(obj=>obj.cardPrice).map((el,index) => (
-                    <Button
+                    <Button className="price-button"
                       key={index}
                       value={el + " €"}
                       style={{
-                        background: `${priceFocus}`,
+                        
                         color: "black",
                         border: "1px solid black",
                       }}
@@ -253,20 +257,20 @@ navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
               </div>
               <hr />
 
-              <div>
-                <h3>Quantity: {quantity}</h3>
-                <Button onClick={handleDecrement}>-</Button>
+              <div className="quantity">
+                <h3>Quantity: <div style={{color:"black",}}>{quantity}</div></h3>
+                <Button className="button" onClick={handleDecrement}>–</Button>
                 <input
                   type="text"
                   value={quantity}
                   onInput={quantityHandler}
                 />
-                <Button onClick={handleIncrement}>+</Button>
+                <Button  className="button" onClick={handleIncrement}>+</Button>
               </div>
               <p>Set the quantity from 1 to 10</p>
               
               <hr />
-              <div style={{ display: "flex", flexDirection: "column" }}>
+              <div className="form-recipient" style={{ display: "flex", flexDirection: "column" }}>
                 <h3>Recipient Information</h3>
                 <label htmlFor="email">Recipient email address</label>
                 <input
@@ -304,7 +308,7 @@ navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
                 <p style={{color:"grey", marginTop:"5px", fontSize:"12px"}}>350 characters maximum!</p>
               </div>
               <hr />
-              <div>
+              <div className="delivery">
                 <h3>Delivery Time</h3>
                 <div>
                 <input   type="checkbox"
@@ -327,7 +331,7 @@ navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
                   {futureDelivery && <Calender calenderDate={calenderDate} setCalenderDate = {setCalenderDate} setShowCalenderMessage= {setShowCalenderMessage}/>}
              </div>
              {showCalenderMessage && <p style={{color:"red", marginTop:"20px"}}>Select a date!</p>}  
-              {(calenderDate || date) && <p style={{color:"darkgreen", marginTop:"20px"}}>Selected delivery date is: <strong>{calenderDate? convertDate(calenderDate) : convertDate(date)}</strong></p>}
+              {(calenderDate || date) && <p style={{color:"black ", marginTop:"20px",}}>Selected delivery date is: <strong style={{fontStyle:"italic", color:"red",fontWeight:"bold",}}>{calenderDate? convertDate(calenderDate) : convertDate(date)}</strong></p>}
               </div>
              
             </Card.Body>
@@ -340,13 +344,19 @@ navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
                 background: "#ffffff5a",
               }}
             >
-              <Button
-                variant="danger"
+              <Button className="next-button"
+                
                 style={{
+                  background: "#fedea8fa",
                   padding: "10px 10px",
                   fontWeight: "bold",
-                  width: "50%",
-                  margin: "0,auto",
+                  width: "250px",
+                  
+                  color: "black",
+                  borderRadius: "15px",
+                  border: "2px solid #ff9b9b",
+                  boxShadow: "#ff9b9b 4px 2px"
+                  
                 }}
                 onClick={submitHandler}
               >
@@ -355,6 +365,7 @@ navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
             </div>
           </Card>
         </Col>
+      </div>
       </div>
     </>
   );
