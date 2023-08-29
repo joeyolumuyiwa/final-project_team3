@@ -5,11 +5,8 @@ import LoginFirstModal from "./LoginFirstModal";
 import { useNavigate, useParams } from "react-router-dom";
 import Calender from "./Calender";
 import validator from "validator";
-<<<<<<< HEAD
 import { convertDate } from "./dateConvert.js"
-=======
 import "./SelectVoucherPage.css"
->>>>>>> 9cdb6efb01fc12b6673b67582bae8eba7d0b00aa
 
 
 const SelectVoucherPage = () => {
