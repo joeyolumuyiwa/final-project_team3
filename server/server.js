@@ -6,6 +6,8 @@ import userRouter from "./routes/userRoute.js"
 import connectDB from "./config/db.js"
 import userModel from "./models/userModel.js";
 import vouchersRouter from "./routes/voucherRoute.js"
+import ordersRouter from "./routes/ordersRoute.js"
+import hotGiftsRouter from "./routes/hotGiftsRoute.js"
 
 const app = express();
 
@@ -27,6 +29,9 @@ app.get("/", async (req, res) => {
 // Routes
 app.use("/api/user", userRouter)
 app.use("/api/vouchers", vouchersRouter)
+app.use("/api/hot-gifts", hotGiftsRouter)
+app.use("/api/orders", ordersRouter)
+
 
 // Global error handler
 app.use((err, req, res, next) => {

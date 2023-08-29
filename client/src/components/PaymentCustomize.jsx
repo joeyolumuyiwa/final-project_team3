@@ -1,48 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Card, Col, Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import LoginFirstModal from "./LoginFirstModal";
 import { convertDate } from "./dateConvert.js"
+import {UserContext} from "./UserContext";
+import PayPalPayment from "./PayPalPaymentModal";
 
-const Cart = () => {
-  let cartList = JSON.parse(localStorage.getItem("cart-list"));
-  const navigate = useNavigate();
-  const location = useLocation().pathname;
+const PaymentCustomize = () => {
 
-    const [showModal, setShowModal] = useState(false)
+    const [,{name},,{email}] = useContext(UserContext)
 
-  const totalPrice = cartList.reduce((acc,el,index)=>{
-    return acc + el.price*el.quantity
-  },0)
+    let cartList = JSON.parse(localStorage.getItem("cart-list"));
+    const navigate = useNavigate();
+    const location = useLocation().pathname;
+  
+      const [showModal, setShowModal] = useState(false)
 
-  const handleRemove = (item) => {
-    cartList = cartList.filter((el) => el._id !== item._id);
-    localStorage.setItem("cart-list", JSON.stringify(cartList));
-    navigate(location);
-  };
-
-   const cancelHandler = ()=>{
-    setShowModal(false)
-    navigate("/login")
-    }
-
-  const loginCheckHandler = () => {
-    if (JSON.parse(localStorage.getItem("my-profile")) || JSON.parse(localStorage.getItem("my-app-token"))) {
-        navigate("/payment-customization")
-      } else {setShowModal(true)}
-  }
-
-  const editECardHandler = (item) => {
-    navigate(`/${item.category}/${item.name}/egreeting-card/${item._id}`)
-  }
-
-   const editVoucherHandler = (item) => {
-    navigate(`/${item.category}/${item.name}/${item._id}`)
-  } 
-
+      const cancelHandler = ()=>{
+        setShowModal(false)
+        }
+  
+    const totalPrice = cartList.reduce((acc,el,index)=>{
+      return acc + el.price*el.quantity
+    },0)
+  
   return (
-    <div style={{ width: "90%", margin: "20px auto"}}>
-      <h2>My Cart</h2>
+    <>
+     <div style={{ width: "90%", margin: "20px auto"}}>
       <div
         style={{
           display: "flex",
@@ -61,6 +45,14 @@ const Cart = () => {
             marginRight: "20px"
           }}
         >
+            <Card   style={{
+                display: "flex",
+                flexDirection: "column",
+                marginBottom: "20px",
+              }}>
+<h3 style={{textAlign:"start",margin:"10px 20px"}}>My Data</h3>
+<p>Order confirmation will be sent by e-mail to: <strong>{email}</strong> </p>
+            </Card>
           {cartList.map((item, index) => (
             <Card
               key={index}
@@ -91,33 +83,6 @@ const Cart = () => {
                     style={{ maxWidth: "200px", height: "auto" }}
                     alt=""
                   />
-                  <button
-                    style={{
-                      border: "none",
-                      background: "none",
-                      color: "purple",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textDecoration: "underline",
-                      margin: "20px 0",
-                    }}
-                    onClick={() => handleRemove(item)}
-                  >
-                    Remove
-                  </button>
-                  <button
-                    style={{
-                      border: "none",
-                      background: "none",
-                      color: "purple",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textDecoration: "underline"
-                    }}
-                     onClick = {()=>editVoucherHandler(item)} 
-                  >
-                    Edit voucher details
-                  </button>
                 </div>
                 <div
                   style={{
@@ -138,20 +103,6 @@ const Cart = () => {
                       No eGreeting Card selected
                     </strong>
                   )}
-                  <button
-                    style={{
-                      border: "none",
-                      background: "none",
-                      color: "purple",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      textDecoration: "underline",
-                      margin: "20px 0",
-                    }}
-                    onClick = {()=>editECardHandler(item)}
-                  >
-                    Edit eGreeting Card
-                  </button>
                 </div>
               </div>
               <div>
@@ -175,15 +126,6 @@ const Cart = () => {
                     Message: <strong>{item.recipientMessage}</strong>
                   </p>
                 ) : null}
-                 <p
-                  style={{
-                    color: "	#777777",
-                    textAlign: "start",
-                    margin: "0 0 10px 20px",
-                  }}
-                >
-                  The voucher is available in: <strong>{item.location.join(", ")}</strong>
-                </p>
               </div>
               <div
                 style={{
@@ -198,53 +140,40 @@ const Cart = () => {
                 <strong>{item.recipientEmail}</strong> on{" "}
                 <strong>{convertDate(item.deliveryDate)}</strong>
               </div>
-              <div
-                style={{
-                  margin: "20px",
-                  display: "flex",
-
-                  flexDirection: "column",
-                }}
-              >
-                <table style={{ textAlign: "start" }}>
-                  <tbody>
-                    <tr>
-                      <td>Voucher value</td>
-                      <td>{item.price} €</td>
-                    </tr>
-                    <tr style={{borderBottom:"1px solid lightgrey"}}>
-                      <td>Voucher quantity</td>
-                      <td>{item.quantity}</td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>Voucher Total</th>
-                      <th>{item.price*item.quantity} €</th>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
             </Card>
           ))}
+            <Button
+                variant="primary"
+                style={{
+                  padding: "10px 10px",
+                  fontWeight: "bold",
+                  width: "80%",
+                  margin: "0 auto",
+                  borderRadius: "50px",
+                }}
+                onClick={()=>navigate("/shopping-cart")}
+              >
+                <strong>{">"}</strong> Go to shopping cart
+              </Button>
         </Col>
         </div>
      <div style={{width:"30%"}}>
      <Col style={{ display: "flex", flexDirection: "column" }}>
           <Card>
-            <h4
+            <h3
               style={{
                 textAlign: "start",
                 margin: "20px 0 20px 20px",
               }}
             >
-              Order Summary 
-            </h4>
+              Order Summary
+            </h3>
 
             <div
               style={{
                 margin: "20px",
                 display: "flex",
+
                 flexDirection: "column",
               }}
             >
@@ -292,32 +221,19 @@ const Cart = () => {
                   borderRadius: "50px",
                   margin: "0 auto 20px",
                 }}
-                onClick={loginCheckHandler}
+                onClick={()=>setShowModal(true)}
               >
-                Proceed to checkout
-              </Button>
-              <Button
-                variant="primary"
-                style={{
-                  padding: "10px 10px",
-                  fontWeight: "bold",
-                  width: "80%",
-                  margin: "0 auto",
-                  borderRadius: "50px",
-                }}
-                onClick={()=>navigate("/home")}
-              >
-                Continue shopping
+                Buy now
               </Button>
             </div>
           </Card>
         </Col>
      </div>
       </div>
-       <LoginFirstModal visible={showModal} onCancel={cancelHandler}/>
     </div>
+    <PayPalPayment visible={showModal} setShowModal={setShowModal} onCancel={cancelHandler}/>
+    </>
   );
 };
 
-export default Cart;
-
+export default PaymentCustomize

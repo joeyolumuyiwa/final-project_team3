@@ -22,7 +22,7 @@ const Login1 = () => {
     { setAuthenticated },
     { setName },
     { setUserId },
-    { setEmail },
+    { email, setEmail },
     { setAvatar },
   ] = useContext(UserContext);
 
@@ -76,7 +76,9 @@ const Login1 = () => {
     setEmail(googleProfileObj.email);
     //setAvatar(googleProfileObj.imageUrl)
 
-    navigate("/home");
+    if (JSON.parse(localStorage.getItem("cart-list")).length > 0 ) {
+      navigate("/payment-customization")
+    } else {navigate("/home")}
   };
   const onFailure = (response) => {
     console.log("FAILED", response);
