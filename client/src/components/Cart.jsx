@@ -262,16 +262,12 @@ fontSize: "22px",
           ))}
         </Col>
         </div>
-     <div style={{width:"100%", }}>
-     <Col style={{ display: "flex", flexDirection: "column" ,}}>
-          <Card style={{ backgroundColor:"#8cc0de",
-                border:"3px solid  #fedea8 ",
-                        borderRadius: "15px",
-                        boxShadow: "#ff9b9b 4px 2px",}}>
-            <h3
+     <div style={{width:"30%"}}>
+     <Col style={{ display: "flex", flexDirection: "column" }}>
+          <Card>
+            <h4
               style={{
-                
-                textAlign: "center",
+                textAlign: "start",
                 margin: "20px 0 20px 20px",
                 fontWeight: "bold",
                 fontSize:"45px",
@@ -279,7 +275,7 @@ fontSize: "22px",
               }}
             >
               Order Summary 
-            </h3>
+            </h4>
 
             <div
               style={{
