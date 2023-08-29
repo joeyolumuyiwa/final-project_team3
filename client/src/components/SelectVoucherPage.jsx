@@ -5,31 +5,11 @@ import LoginFirstModal from "./LoginFirstModal";
 import { useNavigate, useParams } from "react-router-dom";
 import Calender from "./Calender";
 import validator from "validator";
+import { convertDate } from "./dateConvert.js"
 import "./SelectVoucherPage.css"
 
 
 const SelectVoucherPage = () => {
-
-  const convertDate = (iso) => {
-    const monthsArr = [
-      "Jan",
-      "Feb",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const convertedDate = new Date(iso);
-    return `${
-      monthsArr[convertedDate.getMonth()]
-    } ${convertedDate.getDate()}, ${convertedDate.getFullYear()}`;
-  };
 
   const navigate = useNavigate();
   const {category,name,id} = useParams()

@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 
 const Login = () => {
-  const [{ setAuthenticated }, { setName }, { setUserId }, { setEmail }, {setAvatar}] =
+  const [{ setAuthenticated }, { setName }, { setUserId }, { email,setEmail }, {setAvatar}] =
     useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -33,11 +33,16 @@ const Login = () => {
         setUserId(res.data.userId);
         setEmail(res.data.email);
         res.data.avatar? setAvatar(res.data.avatar) : setAvatar("https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png") 
-        navigate("/home");
+        
+        if (JSON.parse(localStorage.getItem("cart-list")).length > 0 ) {
+          navigate("/payment-customization")
+        } else {navigate("/home")}
+        
       })
       .catch((err) => {
         setErrorMessage(err.response.data);
       });
+      /* console.log("login",email); */
   };
 
   return (

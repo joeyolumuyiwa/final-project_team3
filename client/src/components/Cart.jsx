@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Card, Col, Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import LoginFirstModal from "./LoginFirstModal";
+import { convertDate } from "./dateConvert.js"
 
 const Cart = () => {
   let cartList = JSON.parse(localStorage.getItem("cart-list"));
@@ -18,27 +19,6 @@ const Cart = () => {
     cartList = cartList.filter((el) => el._id !== item._id);
     localStorage.setItem("cart-list", JSON.stringify(cartList));
     navigate(location);
-  };
-
-  const convertDate = (iso) => {
-    const monthsArr = [
-      "Jan",
-      "Feb",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const convertedDate = new Date(iso);
-    return `${
-      monthsArr[convertedDate.getMonth()]
-    } ${convertedDate.getDate()}, ${convertedDate.getFullYear()}`;
   };
 
    const cancelHandler = ()=>{
@@ -282,24 +262,20 @@ fontSize: "22px",
           ))}
         </Col>
         </div>
-     <div style={{width:"100%", }}>
-     <Col style={{ display: "flex", flexDirection: "column" ,}}>
-          <Card style={{ backgroundColor:"#8cc0de",
-                border:"3px solid  #fedea8 ",
-                        borderRadius: "15px",
-                        boxShadow: "#ff9b9b 4px 2px",}}>
-            <h3
+     <div style={{width:"30%"}}>
+     <Col style={{ display: "flex", flexDirection: "column" }}>
+          <Card>
+            <h4
               style={{
-                
-                textAlign: "center",
+                textAlign: "start",
                 margin: "20px 0 20px 20px",
                 fontWeight: "bold",
                 fontSize:"45px",
                 color:"#fedea8fa"
               }}
             >
-              Order Summary
-            </h3>
+              Order Summary 
+            </h4>
 
             <div
               style={{
