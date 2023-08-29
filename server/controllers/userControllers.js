@@ -185,7 +185,7 @@ export const authorizeUser = async (req, res, next) => {
           avatar: req.googleData.picture
         });
         const newProfile = await googleProfile.save();
-        res.status(200).json(newProfile);
+        res.status(200).json({...newProfile,email:req.googleData.email});
       }
     }
   } catch (err) {

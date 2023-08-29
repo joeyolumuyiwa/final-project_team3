@@ -23,8 +23,19 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import SelectVoucherPage from "./components/SelectVoucherPage";
 import GreetingCard from "./components/GreetingCard";
 import Cart from "./components/Cart";
+import PaymentCustomize from "./components/PaymentCustomize"
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
+
 
 function App() {
+
+  const initialOptions = {
+    clientId: process.env.PAYPAL_CLIENT_ID,
+    currency: "USD",
+    intent: "CAPTURE"
+  };
+
   const location = useLocation();
 
   const [authenticated, setAuthenticated] = useState(false);
@@ -52,6 +63,8 @@ function App() {
     },
   };
 
+  /* console.log("app email", email); */
+
   useEffect(() => {
     if (token !== null) {
       axios
@@ -60,6 +73,7 @@ function App() {
           configuration
         )
         .then((res) => {
+          console.log(("goog email useeffect", res.data));
           setName(res.data.name);
           setAuthenticated(true);
           setUserId(res.data.userId);
@@ -77,8 +91,10 @@ function App() {
         });
     }
   }, []);
+  
 
   const logoutHandler = () => {
+    
     setAuthenticated(false);
     localStorage.removeItem("my-profile");
     localStorage.removeItem("my-app-token");
@@ -88,7 +104,9 @@ function App() {
   };
 
   return (
-    <UserContext.Provider
+
+    <PayPalScriptProvider options={initialOptions}>
+<UserContext.Provider
       value={[
         { authenticated: authenticated, setAuthenticated: setAuthenticated },
         { name: name, setName: setName },
@@ -134,12 +152,16 @@ function App() {
             <Route path="/:category/:name/:id" element={<SelectVoucherPage />} />
             <Route path="/:category/:name/egreeting-card" element={<GreetingCard />} />
             <Route path="/:category/:name/egreeting-card/:id" element={<GreetingCard />} />
-            <Route path="/shopping-cart" element={<Cart />} />   
+            <Route path="/shopping-cart" element={<Cart />} />  
+            <Route path="/payment-customization" element={<PaymentCustomize/>} />  
           </Routes>
         </div>
         {location.pathname !== "/" && <Footer />}
       </VoucherContext.Provider>
     </UserContext.Provider>
+
+    </PayPalScriptProvider>
+
   );
 }
 
