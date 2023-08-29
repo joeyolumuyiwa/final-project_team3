@@ -23,13 +23,12 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import SelectVoucherPage from "./components/SelectVoucherPage";
 import GreetingCard from "./components/GreetingCard";
 import Cart from "./components/Cart";
-import PaymentCustomize from "./components/PaymentCustomize"
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import PaymentCustomize from "./components/PaymentCustomize"
 
 
-
+import BottomNav from "./components/BottomNav";
 function App() {
-
   const initialOptions = {
     clientId: process.env.PAYPAL_CLIENT_ID,
     currency: "USD",
@@ -155,13 +154,14 @@ function App() {
             <Route path="/shopping-cart" element={<Cart />} />  
             <Route path="/payment-customization" element={<PaymentCustomize/>} />  
           </Routes>
-        </div>
+        </div> <BottomNav/>
         {location.pathname !== "/" && <Footer />}
       </VoucherContext.Provider>
     </UserContext.Provider>
 
     </PayPalScriptProvider>
 
+   
   );
 }
 

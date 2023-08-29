@@ -73,16 +73,15 @@ const GreetingCard = () => {
   return (
     <>
       <div>
-        <div>
+        <div  className="greetings-container">
           <h3>
             Select eGreeting card{" "}
             <strong style={{ color: "grey" }}>(optional)</strong>
           </h3>
-          <div
+          <div className="select-greet"
             style={{
               display: `${displayDiv}`,
-              width: "200px",
-              height: "150px",
+             
             }}
             onClick={() => {
               setDisplayDiv("none");
@@ -91,34 +90,42 @@ const GreetingCard = () => {
           >
             <Modal.Header
               closeButton
-              style={{ background: "tomato", height: "20px" }}
+              
             ></Modal.Header>
             <Modal.Body className="grid-example">
-              <Image
+              <Image className="greet-img"
                 src={imagePath}
-                style={{ width: "100%", height: "130px" }}
+                
               ></Image>
             </Modal.Body>
           </div>
         </div>
       </div>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+      <hr />
+      <div className="greetings-container" style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" , justifyContent:"space-around" , borderRadius: "25px",width:"95%",border: "#fedea8 4px solid",}}>
         {greetingCardsList.map((item, index) => (
           <Card.Img
             key={index}
             src={item.imagePath}
-            style={{ maxWidth: "200px", height: "200px", margin: "10px" }}
+            style={{ maxWidth: "160px", height: "160px", padding: "5px", objectFit:"cover",margin:"5px", border: "#fedea8 2px solid", borderRadius:"15px" }}
             onClick={() => showSelectedCardHandler(item)}
           />
         ))}
       </div>
+      <hr />
       <Button
         variant="danger"
         style={{
+          background: "#fedea8fa",
           padding: "10px 10px",
           fontWeight: "bold",
           width: "50%",
           margin: "0,auto",
+          color: "black",
+          borderRadius: "15px",
+          border: "2px solid #ff9b9b",
+          boxShadow: "#ff9b9b 4px 2px",
+          
         }}
         onClick={submitHandler}
       >

@@ -27,7 +27,7 @@ showCount = "block" : showCount = "none"
       <header className="navbar">
         <div className="container">
           <NavLink to="/home" className="navbar-logo" onClick={closeMobileMenu}>
-            <img src="/logo-gift.png" alt="" />
+            <img src="/Gift (3).png" alt="" />
           </NavLink>
           {authenticated && (
             <div
@@ -63,13 +63,13 @@ showCount = "block" : showCount = "none"
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
+          <li className="nav-item">
               <NavLink
                 to="/home"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Home
+               <i class="fa-solid fa-house"> </i> Home
               </NavLink>
             </li>
             {!authenticated && (
@@ -80,7 +80,7 @@ showCount = "block" : showCount = "none"
                   onClick={closeMobileMenu}
                 >
                   {" "}
-                  Register{" "}
+                  <i class="fa-solid fa-clipboard-user"> </i> Register  {" "}
                 </NavLink>
               </li>
             )}
@@ -92,7 +92,19 @@ showCount = "block" : showCount = "none"
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  My Profile
+                <i class="fa-solid fa-user"> </i> My Profile 
+                </NavLink>
+              </li>
+            )}
+
+{authenticated && (
+              <li className="nav-item">
+                <NavLink
+                  to="/shopping-cart"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+               <i class="fa-solid fa-cart-shopping"></i> Shopping Cart 
                 </NavLink>
               </li>
             )}
@@ -103,7 +115,7 @@ showCount = "block" : showCount = "none"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Contact Us
+                <i class="fa-solid fa-phone-volume"> </i>Contact Us
               </NavLink>
             </li>
             {authenticated ? (
@@ -113,7 +125,7 @@ showCount = "block" : showCount = "none"
                   className="nav-links"
                   onClick={logoutHandler}
                 >
-                  Logout
+                  <i class="fa-solid fa-arrow-right-from-bracket"> </i>Logout
                 </NavLink>
               </li>
             ) : (
@@ -124,11 +136,12 @@ showCount = "block" : showCount = "none"
                   className="nav-links"
                   onClick={closeMobileMenu}
                 >
-                  Login
+                  <i class="fa-solid fa-right-to-bracket"> </i>Login
                 </NavLink>
               </li>
             )}
           </ul>
+          
         </div>
       </header>
     </>

@@ -14,7 +14,7 @@ export default function Redirect() {
    }, [])
    return (
 
-      <div className='landing'>
+      <div className='redirect'>
          <div className='container'>
             <h1>Thank you {name}! We have sent you an email to complete your registration. You will be redirected to the login page...</h1>
          </div></div>

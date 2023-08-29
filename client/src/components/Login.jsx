@@ -49,7 +49,7 @@ const Login = () => {
     <div className="form-container">
         <div>
         <motion.img
-          className="logo"
+          className="A-logo"
           animate={{
             scale: [1, 1, 1, 1, 1],
             rotate: [0, 0, 180, 180, 0],
@@ -86,7 +86,7 @@ const Login = () => {
           <hr />
 
           <motion.button
-          className="l-btn"
+          className="m-btn"
           whileHover={{ scale: 1.2 }}
           type="submit"
         >
@@ -108,7 +108,7 @@ const Login = () => {
         </motion.p>
       
       </div>
-        <hr/>
+        
       <div>
         <Login1 />
       </div>
