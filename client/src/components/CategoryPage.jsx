@@ -4,6 +4,7 @@ import axios from "axios";
 import VoucherDetailsModal from "./VoucherDetailsModal"
 import { useParams } from 'react-router-dom';
 import {VoucherContext} from "./UserContext";
+import { color } from "framer-motion";
 
  const CategoryPage = () => {
 
@@ -44,13 +45,13 @@ const cancelHandler = ()=>{
   },[])
 
   return (
-    <div style={{width:"90%", margin:"20px auto",backgroundColor:"#8cc0de8b",
+    <div style={{width:"90%", margin:"20px auto 70px",backgroundColor:"#8cc0de8b",
         border:"3px solid  #fedea8 ",
-        borderRadius:"25px",
+        borderRadius:"25px", marginBottom: "60px"
         
         }}>
-          <h2 style={{fontWeight: "bold",fontSize: "35px",margin:"20px"}}>{nameToUpperCase(paramObj.category)} Category</h2>
-       <div className="g-4" style={{borderRadius:"25px"}}>
+          <h2 style={{fontWeight: "bold",fontSize: "35px",margin:"20px", }}>{nameToUpperCase(paramObj.category)} Category</h2>
+       <div className="g-4" style={{borderRadius:"25px",}}>
       {vouchers.map((item, index) => (
         <Col style={{ }} key={index}>
           <Card  onClick={()=>showVoucherDetailsHandler(item)}>
@@ -66,10 +67,10 @@ const cancelHandler = ()=>{
             </Card.Body>
           </Card>
         </Col>
-      ))}
-    </div>
+      ))} 
+    </div> 
     <VoucherDetailsModal visible={showModal} onCancel={cancelHandler}/>
-    </div>
+  </div>
   )
 }
 

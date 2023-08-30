@@ -69,8 +69,8 @@ const VouchersSearch = () => {
 
   return (
     <>
-    <div></div>
-      <div className="search-container">
+    
+      <div className="search-container" >
         <div className="search-wrapper">
           <h2>Find the perfect gift!</h2>
           <form className="search-form" onSubmit={handleSubmit}>
@@ -105,11 +105,11 @@ const VouchersSearch = () => {
           )}
         </div>
       </div>
-      <div style={{width:"90%", margin: "20px auto" ,  backgroundColor:"#8cc0de8b",
+      <div style={{width:"90%", margin: "20px auto 70px" ,  backgroundColor:"#8cc0de8b",
                 border:"3px solid  #fedea8 ",
                 borderRadius:"25px",
                 }}>
-      <div className="g-4" style={{borderRadius:"25px"}}>
+      <div className="g-4" style={{borderRadius:"25px", }}>
       {vouchers.map((item, index) => (
         <Col key={index}>
           <Card

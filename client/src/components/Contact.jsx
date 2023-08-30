@@ -67,7 +67,7 @@ const Contact = () => {
                     </div>
                   </div>
       
-                  <div className="col-lg-6">
+                  <div className="col-lg-6" style={{marginBottom: "70px"}}>
       
                   <form>
                               <input type="text" className="form-control form-control-lg" placeholder="Name" />

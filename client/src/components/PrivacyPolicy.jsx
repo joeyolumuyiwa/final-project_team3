@@ -2,7 +2,7 @@ import React from 'react'
 
 const PrivacyPolicy = () => {
   return (
-    <div>
+    <div style={{marginBottom: "70px"}}>
       
 <h3 class="mb-0">Website Privacy Policy Template [Text Format]</h3>
 <h2>PRIVACY NOTICE</h2>

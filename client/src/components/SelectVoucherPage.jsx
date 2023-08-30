@@ -186,7 +186,7 @@ navigate(`/${savedVoucher.category}/${savedVoucher.name}/egreeting-card`)
 
   return (
     <>
-      <div style={{ margin: "20px auto" }}>
+      <div style={{ margin: "20px auto 70px" }}>
       <div className="voucher-cont">
         <Col style={{ border: "none" }}>
           <h2>{nameToUpperCase(id? savedCartItem.name : savedVoucher.name).join(" ")}</h2>
