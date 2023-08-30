@@ -76,8 +76,8 @@ const Login1 = () => {
     setEmail(googleProfileObj.email);
     //setAvatar(googleProfileObj.imageUrl)
 
-    if (JSON.parse(localStorage.getItem("cart-list")).length > 0 ) {
-      navigate("/payment-customization")
+    if (JSON.parse(localStorage.getItem("cart-list")) && JSON.parse(localStorage.getItem("cart-list")).length > 0 ) {
+      navigate("/shopping-cart")
     } else {navigate("/home")}
   };
   const onFailure = (response) => {

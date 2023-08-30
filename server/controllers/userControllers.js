@@ -174,7 +174,7 @@ export const authorizeUser = async (req, res, next) => {
       const result = await googleProfileModel.findOne({
         owner: req.googleData.userId,
       }, { owner: 1, name: 1, avatar: 1 });
-      
+   
       if (result) {
         res.status(200).json(result);
       } 
@@ -185,7 +185,7 @@ export const authorizeUser = async (req, res, next) => {
           avatar: req.googleData.picture
         });
         const newProfile = await googleProfile.save();
-        res.status(200).json({...newProfile,email:req.googleData.email});
+        res.status(200).json(newProfile);
       }
     }
   } catch (err) {

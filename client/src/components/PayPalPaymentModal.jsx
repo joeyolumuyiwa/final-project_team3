@@ -1,3 +1,4 @@
+import React, {useState} from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Modal } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -7,9 +8,11 @@ const PayPalPayment = (props) => {
 
   const navigate = useNavigate();
   const location = useLocation().pathname;
-  console.log("location",location);
 
-  let cartList = JSON.parse(localStorage.getItem("cart-list"));
+  let cartList = JSON.parse(localStorage.getItem("cart-list"))?JSON.parse(localStorage.getItem("cart-list")):[];
+
+  const [showPayPal, setShowPayPal] = useState("block")
+  const [showApprove, setShowApprove] = useState("none")
 
   const cartItems = cartList.map((item) => {
     return {
@@ -98,12 +101,11 @@ const PayPalPayment = (props) => {
           orderData,
           JSON.stringify(orderData, null, 2)
         )
-        setShowModal(false)
+        setShowPayPal("none");
+        setShowApprove("block");
          cartList = [];
          localStorage.setItem("cart-list", JSON.stringify(cartList));
          navigate(location);
-         alert("Your purchase is completed")
-        ;
       }
     } catch (error) {
       console.error("error from onApprove function", error);
@@ -120,6 +122,7 @@ const PayPalPayment = (props) => {
       onHide={onCancel}
       aria-labelledby="contained-modal-title-vcenter"
     >
+      <Modal.Body style={{display:`${showPayPal}`}}>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Buy now with PayPal
@@ -131,6 +134,14 @@ const PayPalPayment = (props) => {
           createOrder={(data, actions) => createOrder(data, actions)}
           onApprove={(data, actions) => onApprove(data, actions)}
         />
+      </Modal.Body>
+<div style={{display:`${showApprove}`}}>
+<Modal.Header closeButton>
+      </Modal.Header>
+        <Modal.Title id="contained-modal-title-vcenter" style={{margin:"20px auto",width:"90%"}}>
+        Thank you for your purchase! The purchase process is completed. 
+        </Modal.Title>
+</div>
      
     </Modal>
     </PayPalScriptProvider>

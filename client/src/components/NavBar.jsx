@@ -14,10 +14,7 @@ const NavBar = () => {
     { click, setClick },
   ] = useContext(UserContext);
 
-  let showCount
-
-  JSON.parse(localStorage.getItem("cart-list")).length > 0 ?
-showCount = "block" : showCount = "none"
+/*   let showCount = JSON.parse(localStorage.getItem("cart-list")) && JSON.parse(localStorage.getItem("cart-list")).length > 0? "block" : "none"  */
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -53,11 +50,11 @@ showCount = "block" : showCount = "none"
             </div>
           )}
 
-          <NavLink to="/shopping-cart">
+         {/*  <NavLink to="/shopping-cart">
           <div  className="fa-solid fa-cart-shopping shoppingbasket"> 
-  <div className="basketitems" style={{display:`${showCount}`}}>{JSON.parse(localStorage.getItem("cart-list")).length}</div>
+  <div className="basketitems" style={{display:`${showCount}`}}>{JSON.parse(localStorage.getItem("cart-list"))? JSON.parse(localStorage.getItem("cart-list")).length:""}</div>
 </div>
-          </NavLink>
+          </NavLink> */}
 
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -117,6 +114,11 @@ showCount = "block" : showCount = "none"
               >
                 <i class="fa-solid fa-phone-volume"> </i>Contact Us
               </NavLink>
+            </li>
+            <li className="nav-item">
+            <NavLink to="/privacy-policy" className="nav-links" onClick={closeMobileMenu}>
+            Privacy Policy
+          </NavLink>
             </li>
             {authenticated ? (
               <li className="nav-item">
