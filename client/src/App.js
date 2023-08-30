@@ -16,7 +16,7 @@ import { UserContext, VoucherContext } from "./components/UserContext";
 import { useLocation } from "react-router-dom";
 import Landing from "./components/Landing";
 import axios from "axios";
-import Footer from "./components/Footer";
+/* import Footer from "./components/Footer"; */
 import VoucherSearch from "./components/VoucherSearch";
 import CategoryPage from "./components/CategoryPage";
 import PrivacyPolicy from "./components/PrivacyPolicy";
@@ -24,7 +24,7 @@ import SelectVoucherPage from "./components/SelectVoucherPage";
 import GreetingCard from "./components/GreetingCard";
 import Cart from "./components/Cart";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import PaymentCustomize from "./components/PaymentCustomize"
+/* import PaymentCustomize from "./components/PaymentCustomize" */
 
 
 import BottomNav from "./components/BottomNav";
@@ -72,7 +72,6 @@ function App() {
           configuration
         )
         .then((res) => {
-          console.log(("goog email useeffect", res.data));
           setName(res.data.name);
           setAuthenticated(true);
           setUserId(res.data.userId);
@@ -152,10 +151,13 @@ function App() {
             <Route path="/:category/:name/egreeting-card" element={<GreetingCard />} />
             <Route path="/:category/:name/egreeting-card/:id" element={<GreetingCard />} />
             <Route path="/shopping-cart" element={<Cart />} />  
-            <Route path="/payment-customization" element={<PaymentCustomize/>} />  
+           {/*  <Route path="/payment-customization" element={<PaymentCustomize/>} />  */} 
           </Routes>
-        </div> <BottomNav/>
-        {location.pathname !== "/" && <Footer />}
+        </div> 
+        
+        {location.pathname !== "/" && location.pathname !== "/login" && location.pathname !== "/register" && <BottomNav/>}
+        
+        {/* {location.pathname !== "/" && <Footer />} */}
       </VoucherContext.Provider>
     </UserContext.Provider>
 

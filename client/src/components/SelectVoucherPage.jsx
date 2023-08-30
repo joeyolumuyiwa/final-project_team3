@@ -15,10 +15,10 @@ const SelectVoucherPage = () => {
   const {category,name,id} = useParams()
   const currentDate = new Date()
 
-  let savedVoucher = JSON.parse(localStorage.getItem("selected-voucher")).selectedVoucher;
+  let savedVoucher = JSON.parse(localStorage.getItem("selected-voucher"))?JSON.parse(localStorage.getItem("selected-voucher")).selectedVoucher:{};
 
 
-  let savedCartItem = JSON.parse(localStorage.getItem("cart-item")).cartItem;
+  let savedCartItem = JSON.parse(localStorage.getItem("cart-item"))?JSON.parse(localStorage.getItem("cart-item")).cartItem:{};
 
 
   const [quantity, setQuantity] = useState(()=>{

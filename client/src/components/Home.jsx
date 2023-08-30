@@ -23,7 +23,6 @@ const categoryList = [
   { name: "cinemas", image: "./images/cinemas.png" }
 ];
 const Home = () => {
- 
 
   return (
     <div className="home">
@@ -112,7 +111,7 @@ const Home = () => {
       
 
       <div>
-        <div>
+        <div style={{width:"95%",margin:"0 auto 50px"}}>
         <VoucherCards />
         </div>
       </div>

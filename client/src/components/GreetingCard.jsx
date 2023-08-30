@@ -10,7 +10,7 @@ const GreetingCard = () => {
   const [imagePath, setImagePath] = useState("");
   const [displayDiv, setDisplayDiv] = useState("none");
 
-  const cartItem = JSON.parse(localStorage.getItem("cart-item")).cartItem;
+  const cartItem = JSON.parse(localStorage.getItem("cart-item"))?JSON.parse(localStorage.getItem("cart-item")).cartItem:{};
 
   const greetingCardsList = [
     {
@@ -125,7 +125,7 @@ const GreetingCard = () => {
           borderRadius: "15px",
           border: "2px solid #ff9b9b",
           boxShadow: "#ff9b9b 4px 2px",
-          
+          marginBottom:"80px"
         }}
         onClick={submitHandler}
       >

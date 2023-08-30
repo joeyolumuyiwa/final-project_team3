@@ -34,8 +34,8 @@ const Login = () => {
         setEmail(res.data.email);
         res.data.avatar? setAvatar(res.data.avatar) : setAvatar("https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png") 
         
-        if (JSON.parse(localStorage.getItem("cart-list")).length > 0 ) {
-          navigate("/payment-customization")
+        if (JSON.parse(localStorage.getItem("cart-list")) && JSON.parse(localStorage.getItem("cart-list")).length > 0 ) {
+          navigate("/shopping-cart")
         } else {navigate("/home")}
         
       })

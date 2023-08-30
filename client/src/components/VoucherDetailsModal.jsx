@@ -16,6 +16,7 @@ const VoucherDetailsModal = (props) => {
 
   const navigateHandler = () => {
     localStorage.setItem("selected-voucher", JSON.stringify({ selectedVoucher }));
+    window.scrollTo(0,0)
 navigate(`/${selectedVoucher.category}/${selectedVoucher.name}`)
   }
 

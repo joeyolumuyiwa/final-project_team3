@@ -7,6 +7,12 @@ import {VoucherContext} from "./UserContext";
 
  const CategoryPage = () => {
 
+  const nameToUpperCase = (item) => {
+    return item.split(" ").map((el) => {
+      return el[0].toUpperCase() + el.slice(1, el.length);
+    });
+  };
+
   const [{ setSelectedVoucher }] = useContext(VoucherContext);
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -43,6 +49,7 @@ const cancelHandler = ()=>{
         borderRadius:"25px",
         
         }}>
+          <h2 style={{fontWeight: "bold",fontSize: "35px",margin:"20px"}}>{nameToUpperCase(paramObj.category)} Category</h2>
        <div className="g-4" style={{borderRadius:"25px"}}>
       {vouchers.map((item, index) => (
         <Col style={{ }} key={index}>

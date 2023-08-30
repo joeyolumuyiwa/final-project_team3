@@ -86,3 +86,31 @@ border-radius: 50px 50px;
 .b-logo:hover {
     transform: scale(1.2);
 }
+
+
+/* styling the shopping cart */
+
+.shoppingbasket {
+  width:40px;
+  height:40px;
+  background-color: none;
+  /* position:absolute; */
+  top:20px;
+  font-size: 20px;
+  color: #323948;
+}
+
+
+.basketitems {
+  color:#fff;
+  font-size:50%;
+  background-color:#992925;
+  /* position:absolute; */
+  top:30%;
+  left:60%;
+  -webkit-transform:translate(-50%,-90%);
+  -moz-transform:translate(-50%,-90%);
+  transform:translate(-50%,-90%);
+  padding: 10% 20%;
+  border-radius:1000px;
+}

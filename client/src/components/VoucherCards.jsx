@@ -3,7 +3,7 @@ import { Button, Card, Grid, Col, Row, Dropdown, DropdownButton } from "react-bo
 import axios from "axios";
 import VoucherDetailsModal from "./VoucherDetailsModal";
 import {VoucherContext} from "./UserContext";
-
+import "./home.css";
 
 const VoucherCards = () => {
 
@@ -22,6 +22,12 @@ const VoucherCards = () => {
   const categoryList = ["fashion", "restaurants", "cinema", "flower shop", "beauty"].sort()
 
   const locationList = ["berlin", "munich", "frankfurt", "hamburg", "duesseldorf", "stuttgart", "essen","leipzig", "dortmund","koeln"].sort()
+
+  const cardsPerRow = 4;
+  const [next, setNext] = useState(cardsPerRow);
+  const handleMoreCards = () => {
+    setNext(next + cardsPerRow);
+  };
 
 
 const showVoucherDetailsHandler = (item)=>{
@@ -100,7 +106,7 @@ else if (!category && !location) {
     </Dropdown>
       </div> */}
     <div className="g-4">
-      {vouchers.map((item, index) => (
+      {vouchers?.slice(0,next)?.map((item, index) => (
         <Col key={index}>
           <Card  onClick={()=>showVoucherDetailsHandler(item)}>
             <Card.Img className="voucher-img"
@@ -117,6 +123,9 @@ else if (!category && !location) {
         </Col>
       ))}
     </div>
+    {next < vouchers?.length && (
+        <button onClick={handleMoreCards} className="more-button" style={{marginBottom:"20px"}}>Show More</button>
+      )}
     <VoucherDetailsModal visible={showModal} onCancel={cancelHandler}/>
     </div>
    
