@@ -74,7 +74,7 @@ const Contact = () => {
                               <input type="email" className="form-control mt-3" placeholder="Email" />
                               <input type="text" className="form-control mt-3" placeholder="Subject" />
                               <div className="mb-3 mt-3">
-                                  <textarea className="form-control" rows="5" id="comment" name="text" placeholder="Project Details" />
+                                  <textarea className="form-control" rows="5" id="comment" name="text" placeholder="Card Details" />
                               </div>
                     <button type="button" className="m-btn">
                       Contact Me
