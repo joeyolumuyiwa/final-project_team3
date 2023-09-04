@@ -8,7 +8,7 @@ export const addNewVoucher = async (req, res, next) => {
     const citiesArr = (randomCityArray());
     const voucher = new voucherModel(req.body);
       await voucher.save();
-      res.status(200).json(citiesArr);
+      res.status(200).json(voucher);
   } catch (err) {
     next(err)
   }

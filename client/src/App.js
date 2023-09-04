@@ -24,10 +24,11 @@ import SelectVoucherPage from "./components/SelectVoucherPage";
 import GreetingCard from "./components/GreetingCard";
 import Cart from "./components/Cart";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import HotGiftsCards from "./components/HotGiftsCards"
 /* import PaymentCustomize from "./components/PaymentCustomize" */
-
-
 import BottomNav from "./components/BottomNav";
+
+
 function App() {
   const initialOptions = {
     clientId: process.env.PAYPAL_CLIENT_ID,
@@ -151,6 +152,8 @@ function App() {
             <Route path="/:category/:name/egreeting-card" element={<GreetingCard />} />
             <Route path="/:category/:name/egreeting-card/:id" element={<GreetingCard />} />
             <Route path="/shopping-cart" element={<Cart />} />  
+            
+            <Route path="/hot-gifts/:category" element={<HotGiftsCards/>} /> 
            {/*  <Route path="/payment-customization" element={<PaymentCustomize/>} />  */} 
           </Routes>
         </div> 

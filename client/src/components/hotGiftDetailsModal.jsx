@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {VoucherContext} from "./UserContext";
 
 
-const VoucherDetailsModal = (props) => {
+const HotGiftDetailsModal = (props) => {
   const { visible, onCancel } = props;
 
   const [{ selectedVoucher },{selectedPrice,setSelectedPrice},{selectedImage,setSelectedImage}] = useContext(VoucherContext);
@@ -54,14 +54,20 @@ navigate(`/${selectedVoucher.category}/${selectedVoucher.name}`)
 
           <Row style={{marginTop:"20px"}}>
             <p>
-              This voucher is available in:{" "}
+              This card is available in:{" "}
               <strong>{selectedVoucher?.location?.join(", ")}</strong>
             </p>
           </Row>
           <Row>
             <p>
-              The available prices for that voucher:{" "}
-              <strong>{selectedVoucher?.price.map(obj=>obj.cardPrice)?.join(", ")+" €"}</strong>
+              The available shops for that card:{" "}
+              <strong>{selectedVoucher?.shops?.join(", ")}</strong>
+            </p>
+          </Row>
+          <Row>
+            <p>
+              The available prices for that card:{" "}
+              <strong>{selectedVoucher?.price?.join(", ")+" €"}</strong>
             </p>
           </Row>
         </Container>
@@ -80,4 +86,4 @@ navigate(`/${selectedVoucher.category}/${selectedVoucher.name}`)
   );
 };
 
-export default VoucherDetailsModal;
+export default HotGiftDetailsModal;

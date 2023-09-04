@@ -117,6 +117,7 @@ export const createOrderController = async (req, res) =>{
     try {
         // use the cart information passed from the front-end to calculate the order amount detals
         const { cart } = req.body;
+        console.log(cart);
         const { jsonResponse, httpStatusCode } = await createOrder(cart);
         res.status(httpStatusCode).json(jsonResponse);
       } catch (error) {

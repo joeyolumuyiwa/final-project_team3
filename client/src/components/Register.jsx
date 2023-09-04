@@ -56,7 +56,7 @@ setName(user.name)
       </div>
       <h2>Register</h2>
         <form className="register-form" onSubmit={handleSubmit}>
-          <label> Name</label>
+          <label htmlFor="name"> Name</label>
           <input
             type="text"
             id="name"

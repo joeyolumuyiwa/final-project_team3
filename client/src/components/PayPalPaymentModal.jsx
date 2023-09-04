@@ -11,16 +11,20 @@ const PayPalPayment = (props) => {
 
   let cartList = JSON.parse(localStorage.getItem("cart-list"))?JSON.parse(localStorage.getItem("cart-list")):[];
 
+  const totalPrice = cartList.reduce((acc, el, index) => {
+    return acc + el.price * el.quantity;
+  }, 0);
+
   const [showPayPal, setShowPayPal] = useState("block")
   const [showApprove, setShowApprove] = useState("none")
 
-  const cartItems = cartList.map((item) => {
+ /*  const cartItems = cartList.map((item) => {
     return {
       name: item.name,
       quantity: item.quantity,
       itemPrice: item.price
     };
-  });
+  }); */
 
   const createOrder = async (data, actions) => {
     try {
@@ -34,7 +38,7 @@ const PayPalPayment = (props) => {
           // use the "body" param to optionally pass additional order information
           // like product ids and quantities
           body: JSON.stringify({
-           cartItems
+           price: totalPrice
           })
         }
       );
