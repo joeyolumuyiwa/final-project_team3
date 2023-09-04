@@ -1,11 +1,12 @@
+
 import { useState, useEffect, useContext } from "react";
 import { Button, Card, Grid, Col, Row, Dropdown, DropdownButton } from "react-bootstrap";
 import axios from "axios";
-import VoucherDetailsModal from "./VoucherDetailsModal"
+import HotGiftDetailsModal from "./hotGiftDetailsModal"
 import { useParams } from 'react-router-dom';
 import {VoucherContext} from "./UserContext";
 
- const CategoryPage = () => {
+ const HotGiftsCards = () => {
 
   const nameToUpperCase = (item) => {
     return item.split(" ").map((el) => {
@@ -16,7 +17,7 @@ import {VoucherContext} from "./UserContext";
   const [{ setSelectedVoucher }] = useContext(VoucherContext);
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [vouchers, setVouchers] = useState([]);
+  const [birthCards, setBirthCards] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
 
   const [showModal, setShowModal] = useState(false)
@@ -24,7 +25,8 @@ import {VoucherContext} from "./UserContext";
 
 const paramObj = useParams() 
 
-  const showVoucherDetailsHandler = (item)=>{
+
+  const showCardDetailsHandler = (item)=>{
     setSelectedVoucher(item);
     setShowModal(true)
     }
@@ -36,9 +38,9 @@ const cancelHandler = ()=>{
 
   useEffect(()=>{
     axios
-    .post(`${process.env.REACT_APP_BE_URL}/api/vouchers/get-category-vouchers/${paramObj.category}`)
+    .post(`${process.env.REACT_APP_BE_URL}/api/hot-gifts/get-category-hot-gift-card/${paramObj.category}`)
     .then((response) => {
-      setVouchers(response.data);
+      setBirthCards(response.data);
     })
     .catch((err) => setErrorMessage(err.request.response));
   },[])
@@ -47,13 +49,13 @@ const cancelHandler = ()=>{
     <div style={{width:"90%", margin:"20px auto 80px",backgroundColor:"#8cc0de8b",
         border:"3px solid  #fedea8 ",
         borderRadius:"25px",
-        
+        paddingBottom:"20px"
         }}>
-          <h2 style={{fontWeight: "bold",fontSize: "35px",margin:"20px"}}>{nameToUpperCase(paramObj.category)} Category</h2>
+          <h2 style={{fontWeight: "bold",fontSize: "35px",margin:"20px"}}>{nameToUpperCase(paramObj.category)} Cards</h2>
        <div className="g-4" style={{borderRadius:"25px"}}>
-      {vouchers.map((item, index) => (
+      {birthCards.map((item, index) => (
         <Col style={{ }} key={index}>
-          <Card  onClick={()=>showVoucherDetailsHandler(item)}>
+          <Card  onClick={()=>showCardDetailsHandler(item)}>
             <Card.Img className="voucher-img"
               variant="top"
               src={item.card}
@@ -68,9 +70,9 @@ const cancelHandler = ()=>{
         </Col>
       ))}
     </div>
-    <VoucherDetailsModal visible={showModal} onCancel={cancelHandler}/>
+    <HotGiftDetailsModal visible={showModal} onCancel={cancelHandler}/>
     </div>
   )
 }
 
-export default  CategoryPage
+export default  HotGiftsCards

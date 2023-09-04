@@ -112,7 +112,7 @@ else if (!category && !location) {
             <Card.Img className="voucher-img"
               variant="top"
               src={item.card}
-              
+              style={{height:"50%"}}
             />
             <Card.Body className="card-body" >
               <Card.Title>{item.name}</Card.Title>

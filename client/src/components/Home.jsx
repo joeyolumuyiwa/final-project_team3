@@ -6,9 +6,10 @@ import "./home.css";
 import { NavLink } from "react-router-dom";
 import videoGif from "../Cream White Floral Vintage Inspirational Quote Card Landscape (2).mp4";
 import videoGif2 from "../bike.mp4";
-import videoGif3 from "../music.mp4";
+import videoGif3 from "../Red Elegant Christmas Greeting Mobile Video.mp4";
 import videoGif4 from "../flower.mp4";
 import { Card } from "./Card";
+import { useNavigate, useLocation } from "react-router-dom";
 
 /* style={{border:"2px solid red"}} */
 
@@ -23,6 +24,7 @@ const categoryList = [
   { name: "cinemas", image: "./images/cinemas.png" }
 ];
 const Home = () => {
+  const navigate = useNavigate();
 
   return (
     <div className="home">
@@ -55,63 +57,40 @@ const Home = () => {
       </div>
       <br />
 
-      {/* <div style={{ margin: "20px 0" }}>
-        <Slides />
-      </div> */}
-      <div className="birth-gift">
-        <div> Our best Birthday cards </div>
-      </div>
-      <div>
+       <div className="gift-bar" style={{marginBottom:"20px"}}>
+          {" "}
+          <i className="fa-solid fa-crown"> HOT Gifts! </i>
+        </div>
+      <div onClick={()=>navigate("/hot-gifts/birthday")}>
         <video className="birth-video" src={videoGif} autoPlay loop muted>
           {" "}
         </video>
       </div>
-      <div className="list-container">
-        <div className="birth-list">
-          <div>
-            <Card img="./images/birth.png" />
-          </div>
-          <div>
-            <Card img="./images/birth1.png" />
-          </div>
-          <div>
-            <Card img="./images/birth2.png" />
-          </div>
-          <div>
-            <Card img="./images/birth3.png" />
-          </div>
-          <p className="more-button">
-            <i className="fa-solid fa-gifts"></i> See more...
-          </p>
-        </div>
-      </div>
-      <br />
+      
       <div>
-        <div className="gift-bar">
-          {" "}
-          <i className="fa-solid fa-crown"> HOT Gifts! </i>
-        </div>
 
         <div className="video-container">
-          <div>
+          <div onClick={()=>navigate("/hot-gifts/motherday")}>
             <video className="birth-video2" src={videoGif2} autoPlay loop muted>
               {" "}
             </video>
           </div>
           <div>
-            <video className="birth-video3" src={videoGif3} autoPlay loop muted>
+            <video className="birth-video3" src={videoGif3} autoPlay loop muted onClick={()=>navigate("/hot-gifts/christmas")}>
               {" "}
             </video>
-            <video className="birth-video4" src={videoGif4} autoPlay loop muted>
+            <video className="birth-video4" src={videoGif4} autoPlay loop muted onClick={()=>navigate("/hot-gifts/valentine-day")}>
               {" "}
             </video>
           </div>
         </div>
       </div>
-      
 
+ <div className="birth-gift" style={{marginBottom:"20px"}}>
+        <div> Our Voucher Collection </div>
+      </div> 
       <div>
-        <div style={{width:"95%",margin:"0 auto 50px"}}>
+        <div style={{width:"95%",margin:"0 auto 80px"}}>
         <VoucherCards />
         </div>
       </div>

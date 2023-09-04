@@ -12,6 +12,7 @@ const Cart = () => {
 
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showPayPalModal, setShowPayPalModal] = useState(false);
+  const [showEmptyCartMessage, setShowEmptyCartMessage] = useState(false)
 
 
   const totalPrice = cartList.reduce((acc, el, index) => {
@@ -34,7 +35,8 @@ const Cart = () => {
   };
 
   const purchasekHandler = () => {
-    if (
+   if (!JSON.parse(localStorage.getItem("cart-list")) || !JSON.parse(localStorage.getItem("cart-list")).length>0) return setShowEmptyCartMessage(true)
+    else if (
       JSON.parse(localStorage.getItem("my-profile")) ||
       JSON.parse(localStorage.getItem("my-app-token"))
     ) {
@@ -224,9 +226,9 @@ const Cart = () => {
                     <strong
                       style={{
                         fontStyle: "italic",
-                        color: "red",
+                        color: "darkred",
                         fontWeight: "bold",
-                        fontSize: "22px"
+                        fontSize: "18px"
                       }}
                     >
                       {item.recipientFullName}
@@ -250,11 +252,23 @@ const Cart = () => {
                       margin: "0 0 10px 20px"
                     }}
                   >
-                    The voucher is available in:{" "}
+                    The voucher is available in the following cities:{" "}
                     <strong style={{ fontStyle: "italic" }}>
-                      {item.location.join(", ")}
+                      {item.location?.join(", ")}
                     </strong>
                   </p>
+                  {item.shops &&  <p
+                    style={{
+                      color: "black",
+                      textAlign: "start",
+                      margin: "0 0 10px 20px"
+                    }}
+                  >
+                    And in the following shops:{" "}
+                    <strong style={{ fontStyle: "italic" }}>
+                      {item.shops?.join(", ")}
+                    </strong>
+                  </p>}
                 </div>
                 <div
                   style={{
@@ -269,7 +283,7 @@ const Cart = () => {
                   <strong
                     style={{
                       fontStyle: "italic",
-                      color: "red",
+                      color: "darkred",
                       fontWeight: "bold",
                       fontSize: "18px"
                     }}
@@ -280,7 +294,7 @@ const Cart = () => {
                   <strong
                     style={{
                       fontStyle: "italic",
-                      color: "red",
+                      color: "darkred",
                       fontWeight: "bold",
                       fontSize: "18px"
                     }}
@@ -421,6 +435,7 @@ const Cart = () => {
                 >
                  Buy now
                 </Button>
+                {showEmptyCartMessage && <div><h4 style={{color:"red", marginTop:"10px"}}>Your Cart is Empty!</h4></div>}
                 <Button
                   variant="primary"
                   style={{

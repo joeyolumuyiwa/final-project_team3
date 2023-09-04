@@ -28,7 +28,7 @@ export const randomCityArray = () => {
 };
 
 const cities = JSON.stringify(randomCityArray()) 
-console.log(cities); 
+/* console.log(cities);  */
 
 export const randomShopsArray = () => {
   const shopsArr = [
@@ -86,7 +86,7 @@ export const randomShopsArray = () => {
 };
 
 const shops = JSON.stringify(randomShopsArray()) 
-console.log(shops); 
+/* console.log(shops);  */
 
 // To add a new hotGift
 export const addNewHotGift = async (req, res, next) => {

@@ -308,7 +308,6 @@
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  
  }
 .g-4-categoties {
  width: 100%;
@@ -351,7 +350,7 @@
   border: #fedea8fa 4px solid;
 width: 100%;
 cursor: pointer;
-object-fit: cover;
+object-fit:fill;
 padding: 2px;
 
 }
@@ -453,7 +452,6 @@ color: #ff9090;
 .select-greet {
   width: 80%;
   height: 250px;
-  
 }
 
 .greetings-container {

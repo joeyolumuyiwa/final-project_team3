@@ -94,10 +94,11 @@ border-radius: 50px 50px;
   width:40px;
   height:40px;
   background-color: none;
-  /* position:absolute; */
+  position:absolute;
   top:20px;
   font-size: 20px;
   color: #323948;
+  right: 25px
 }
 
 
@@ -105,7 +106,7 @@ border-radius: 50px 50px;
   color:#fff;
   font-size:50%;
   background-color:#992925;
-  /* position:absolute; */
+  position:absolute;
   top:30%;
   left:60%;
   -webkit-transform:translate(-50%,-90%);
