@@ -9,6 +9,15 @@
 
 }
 
+@media screen and (min-width: 992px) {
+    .voucher-cont {
+       width: 80%;
+       margin: auto;
+       
+  
+    }
+  }
+
 .voucher-cont h2 {
 color: #fedea8fa;
 font-weight: bold;

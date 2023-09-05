@@ -25,6 +25,8 @@ navigate(`/${selectedVoucher.category}/${selectedVoucher.name}`)
       show={visible}
       onHide={onCancel}
       aria-labelledby="contained-modal-title-vcenter"
+     
+     
     >
  
       <Modal.Header closeButton style={{ backgroundColor:"#8cc0de", color:"#fedea8fa",}}>
@@ -52,7 +54,7 @@ navigate(`/${selectedVoucher.category}/${selectedVoucher.name}`)
             </Col>
           </Row>
 
-          <Row style={{marginTop:"20px"}}>
+          <Row style={{marginTop:"20px", margin:"auto"}}>
             <p>
               This voucher is available in:{" "}
               <strong>{selectedVoucher?.location?.join(", ")}</strong>

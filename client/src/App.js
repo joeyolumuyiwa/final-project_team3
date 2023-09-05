@@ -157,9 +157,9 @@ function App() {
            {/*  <Route path="/payment-customization" element={<PaymentCustomize/>} />  */} 
           </Routes>
         </div> 
-        
+        <div className="Bottom-nav">
         {location.pathname !== "/" && location.pathname !== "/login" && location.pathname !== "/register" && <BottomNav/>}
-        
+        </div>
         {/* {location.pathname !== "/" && <Footer />} */}
       </VoucherContext.Provider>
     </UserContext.Provider>

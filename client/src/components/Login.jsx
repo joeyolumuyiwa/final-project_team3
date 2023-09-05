@@ -47,7 +47,7 @@ const Login = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container" style={{marginBottom: "30px",}}>
         <div>
         <motion.img
           className="A-logo"

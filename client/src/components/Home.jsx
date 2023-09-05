@@ -61,19 +61,20 @@ const Home = () => {
           {" "}
           <i className="fa-solid fa-crown"> HOT Gifts! </i>
         </div>
-      <div onClick={()=>navigate("/hot-gifts/birthday")}>
-        <video className="birth-video" src={videoGif} autoPlay loop muted>
-          {" "}
-        </video>
-      </div>
+    
       
       <div>
 
         <div className="video-container">
-          <div onClick={()=>navigate("/hot-gifts/motherday")}>
-            <video className="birth-video2" src={videoGif2} autoPlay loop muted>
+        <div >
+        <video className="birth-video" src={videoGif} autoPlay loop muted onClick={()=>navigate("/hot-gifts/birthday")}>
+          {" "}
+        </video><video className="birth-video2" src={videoGif2} autoPlay loop muted onClick={()=>navigate("/hot-gifts/motherday")}>
               {" "}
             </video>
+      </div>
+          <div >
+            
           </div>
           <div>
             <video className="birth-video3" src={videoGif3} autoPlay loop muted onClick={()=>navigate("/hot-gifts/christmas")}>

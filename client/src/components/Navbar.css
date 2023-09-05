@@ -18,6 +18,14 @@
   
   
 }
+@media screen and (min-width: 992px) {
+  .navbar {
+     width: 80%;
+     margin: auto;
+     
+
+  }
+}
 
 
 
@@ -116,13 +124,20 @@ h3 {
   }
 
   .nav-menu.active {
-    background: linear-gradient(-70deg, #8cc0de 50%, #fedea8 69%,#ff9b9b 9%,#8cc0de 27%);
+    background: linear-gradient(-69deg, #8cc0de 50%, #fedea8 69%,#ff9b9b 9%,#8cc0de 27%);
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
     z-index: 1;
     height: 100vh;
   }
+  
+  @media screen and (min-width: 992px) {
+    .nav-menu.active {
+      background: linear-gradient(-51deg, #8cc0de 50%, #fedea8 69%,#ff9b9b 9%,#8cc0de 27%);
+  }
+    }
+  
 
   .nav-links {
     text-align: center;
@@ -193,7 +208,7 @@ h3 {
   background-color: none;
   position:absolute;
   top:20px;
-  right:13%;
+  right:15px;
   font-size: 40px;
   color: #323948;
 }
@@ -210,3 +225,9 @@ h3 {
   padding: 10% 20%;
   border-radius:1000px;
 }
+
+@media screen and (min-width: 992px) {
+  .shoppingbasket {
+ margin-right: 100px;
+}
+  }

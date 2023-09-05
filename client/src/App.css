@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  
 }
 
 .App {
@@ -20,7 +20,15 @@
    
  }
  
- 
+ @media screen and (min-width: 992px) {
+.App {
+    width: 80%;
+    margin: auto;
+    
+  }
+}
+
+
  .form-container, .login-form , .register-form {
    display: flex;
    flex-direction: column;
@@ -470,14 +478,19 @@ color: #ff9090;
 }
 
 .greet-img {
-  object-fit: cover;
-  width: 230px;
- height: 230px;
+  
+  width: 250px;
+ height: 250px;
  border: #fbd09e 5px solid;
  
  border-radius: 500px;
 
  
+}
+.greet-img:hover {
+  
+  
+  transform: scale(1.3);
 }
 
 .cart Button:hover {
@@ -494,3 +507,14 @@ color: #ff9090;
 .redirect {
   height: 100%;
 }
+
+@media screen and (min-width: 992px) {
+  .Bottom-nav {
+  margin: auto;
+  width: 80%;
+}
+  }
+
+ 
+  
+  

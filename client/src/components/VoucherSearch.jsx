@@ -108,6 +108,7 @@ const VouchersSearch = () => {
       <div style={{width:"90%", margin: "20px auto" ,  backgroundColor:"#8cc0de8b",
                 border:"3px solid  #fedea8 ",
                 borderRadius:"25px",
+                marginBottom: "70px"
                 }}>
       <div className="g-4" style={{borderRadius:"25px"}}>
       {vouchers.map((item, index) => (
